@@ -17,19 +17,36 @@ public class Spreadsheet implements Serializable {
   private int _row;
   private int _column;
   private boolean _changed;
-  //private Range _cutBuffer;
-  //private Cell[][] _listCells;
-  //private User[] _listUsers;
+  private Range _cutBuffer;
+  private Cell[][] _listCells;
+  private User[] _listUsers;
 
-  // FIXME define contructor(s)
   public Spreadsheet(int row, int column){
     _row = row;
     _column = column;
     _changed = false;
+    _listCells = new Cell[row][column];
+  }
+
+
+  public int getRow(){
+    return _row;
+  }
+
+  public int getColumn(){
+    return _column;
+  }
+
+  public boolean isChanged(){
+    return _changed;
+  }
+
+  public void addUser(User user){
 
   }
-  // FIXME define methods
   
+
+
   /**
    * Insert specified content in specified address.
    *
