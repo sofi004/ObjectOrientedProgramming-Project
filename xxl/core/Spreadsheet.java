@@ -26,6 +26,7 @@ public class Spreadsheet implements Serializable {
     _column = column;
     _changed = false;
     _listCells = new Cell[row][column];
+    createListCell();
   }
 
 
