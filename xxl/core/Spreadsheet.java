@@ -43,9 +43,9 @@ public class Spreadsheet implements Serializable {
 
 
   public void createListCell(){
-    for(i = 0; i < row; i++){
-      for(j = 0; j < column; j++){
-        _listCells[i][j] = new Cell(i, j)
+    for(int i = 0; i < _row; i++){
+      for(int j = 0; j < _column; j++){
+        _listCells[i][j] = new Cell(i, j);
       }
     }
   }

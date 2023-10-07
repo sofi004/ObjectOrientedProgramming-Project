@@ -19,7 +19,7 @@ public class Cell {
         return _column;
     }
 
-    public void insertContent(String text){
-        _content = text
+    public void insertContent(Content content){
+        _content = content;
     }
 }
