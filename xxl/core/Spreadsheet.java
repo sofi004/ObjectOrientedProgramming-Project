@@ -44,6 +44,10 @@ public class Spreadsheet implements Serializable {
   public void addUser(User user){
 
   }
+
+  public Cell[] getCutBuffer(){
+    
+  }
   
 
 
