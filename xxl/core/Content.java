@@ -1,5 +1,11 @@
 package xxl.core;
 
-public class Content {
+public abstract class Content {
     
+    public abstract Literal getValue(){
+
+    }
+    public abstract string toSring(){
+        
+    }
 }
