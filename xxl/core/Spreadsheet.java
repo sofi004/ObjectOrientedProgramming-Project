@@ -41,14 +41,14 @@ public class Spreadsheet implements Serializable {
     return _changed;
   }
 
-  public void addUser(User user){
 
+  public void createListCell(){
+    for(i = 0; i < row; i++){
+      for(j = 0; j < column; j++){
+        _listCells[i][j] = new Cell(i, j)
+      }
+    }
   }
-
-  public Cell[] getCutBuffer(){
-    
-  }
-  
 
 
   /**
