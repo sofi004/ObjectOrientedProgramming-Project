@@ -5,7 +5,7 @@ public abstract class Content {
     public abstract Literal getValue(){
 
     }
-    public abstract String toSring(){
+    public abstract String toString(){
         
     }
 }
