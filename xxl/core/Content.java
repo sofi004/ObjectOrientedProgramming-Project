@@ -1,11 +1,11 @@
-package ObjectOrientedProgramming-Project.xxl.core;
+package xxl.core;
 
 public abstract class Content {
     
-    public Literal getValue(){
+    public abstract Literal getValue(){
 
     }
-    public string getSring(){
+    public abstract string toSring(){
         
     }
 }
