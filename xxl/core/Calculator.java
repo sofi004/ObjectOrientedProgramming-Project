@@ -1,12 +1,15 @@
 package xxl.core;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import xxl.core.exception.ImportFileException;
+import xxl.core.exception.InvalidFunctionException;
 import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
@@ -70,7 +73,16 @@ public class Calculator implements Serializable{
    *         an error while processing this file.
    */
   public void load(String filename) throws UnavailableFileException {
+
     // FIXME implement serialization method
+
+    try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))){
+      Calculator loadedCalculator = (Calculator) in.readObject();
+      this._spreadsheet = loadedCalculator.getSpreadsheet();
+
+    } catch (ClassNotFoundException | IOException e){
+      throw new UnavailableFileException(filename);
+    }
   }
   
   /**
@@ -79,12 +91,14 @@ public class Calculator implements Serializable{
    * @param filename name of the text input file
    * @throws ImportFileException
    */
-  public void importFile(String filename) throws ImportFileException {
+  public void importFile(String filename) throws ImportFileException, InvalidFunctionException {
     try {
       // FIXME open import file and feed entries to new spreadsheet (in a cycle)
       //       each entry is inserted using insertContent of Spreadsheet. Set new
       // spreadsheet as the active one.
       // ....
+      Parser parse = new Parser(_spreadsheet);
+      _spreadsheet = parse.parseFile(filename);
     } catch (IOException | UnrecognizedEntryException /* FIXME maybe other exceptions */ e) {
       throw new ImportFileException(filename, e);
     }
