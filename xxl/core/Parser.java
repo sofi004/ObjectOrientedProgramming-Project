@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.util.Collection;
 import java.util.ArrayList;
 
+import xxl.core.exception.InvalidFunctionException;
 import xxl.core.exception.UnrecognizedEntryException;
 
 class Parser {
@@ -21,7 +22,7 @@ class Parser {
     _spreadsheet = spreadsheet;
   }
 
-  Spreadsheet parseFile(String filename) throws IOException, UnrecognizedEntryException /* More Exceptions? */ {
+  Spreadsheet parseFile(String filename) throws IOException, UnrecognizedEntryException, InvalidFunctionException /* More Exceptions? */ {
     try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
       parseDimensions(reader);
 
@@ -54,7 +55,7 @@ class Parser {
     _spreadsheet = new Spreadsheet(rows, columns);
   }
 
-  private void parseLine(String line) throws UnrecognizedEntryException /*, more exceptions? */{
+  private void parseLine(String line) throws UnrecognizedEntryException, InvalidFunctionException /*, more exceptions? */{
     String[] components = line.split("\\|");
 
     if (components.length == 1) // do nothing
@@ -69,7 +70,7 @@ class Parser {
   }
 
   // parse the begining of an expression
-  public Content parseContent(String contentSpecification) throws UnrecognizedEntryException {
+  public Content parseContent(String contentSpecification) throws UnrecognizedEntryException, InvalidFunctionException {
     char c = contentSpecification.charAt(0);
 
     if (c == '=')
@@ -92,7 +93,7 @@ class Parser {
   }
 
   // contentSpecification is what comes after '='
-  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException /*more exceptions */ {
+  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException, InvalidFunctionException /*more exceptions */ {
     if (contentSpecification.contains("("))
       return parseFunction(contentSpecification);
     // It is a reference
@@ -100,7 +101,8 @@ class Parser {
     return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]));
   }
 
-  private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException /*more exceptions */ {
+  private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException, 
+    InvalidFunctionException /*more exceptions */ {
     String[] components = functionSpecification.split("[()]");
     if (components[1].contains(","))
       return parseBinaryFunction(components[0], components[1]);
@@ -108,7 +110,8 @@ class Parser {
     return parseIntervalFunction(components[0], components[1]);
   }
 
-  private Content parseBinaryFunction(String functionName, String args) throws UnrecognizedEntryException /* , more Exceptions */ {
+  private Content parseBinaryFunction(String functionName, String args) throws UnrecognizedEntryException,
+   InvalidFunctionException /* , more Exceptions */ {
     String[] arguments = args.split(",");
     Content arg0 = parseArgumentExpression(arguments[0]);
     Content arg1 = parseArgumentExpression(arguments[1]);
@@ -118,7 +121,7 @@ class Parser {
       case "SUB" -> new Sub(arg0, arg1);
       case "MUL" -> new Mul(arg0, arg1);
       case "DIV" -> new Div(arg0, arg1);
-      default -> dar erro com função inválida: functionName ;
+      default -> throw new InvalidFunctionException(functionName);
     };
   }
 
@@ -132,15 +135,15 @@ class Parser {
   }
 
   private Content parseIntervalFunction(String functionName, String rangeDescription)
-    throws UnrecognizedEntryException /* , more exceptions ? */ {
+    throws UnrecognizedEntryException, InvalidFunctionException /* , more exceptions ? */ {
     Range range = _spreadsheet.buildRange(rangeDescription);
     return switch (functionName) {
       case "CONCAT" -> new Concat(range);
       case "COALESTE" -> new Coaleste(range);
       case "PRODUCT" -> new Product(range);
       case "AVERAGE" -> new Average(range);
-      default -> dar erro com função inválida: functionName;
-    }
+      default -> throw new InvalidFunctionException(functionName);
+    };
   }
 
   /* Na classe Spreadsheet preciso de algo com a seguinte funcionalidade
