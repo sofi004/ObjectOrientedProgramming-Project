@@ -1,7 +1,10 @@
 package xxl.core;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 import xxl.core.exception.ImportFileException;
 import xxl.core.exception.MissingFileAssociationException;
@@ -13,7 +16,7 @@ import xxl.core.exception.UnrecognizedEntryException;
 /**
  * Class representing a spreadsheet application.
  */
-public class Calculator {
+public class Calculator implements Serializable{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
   
@@ -50,7 +53,15 @@ public class Calculator {
    */
   public void saveAs(String filename) throws FileNotFoundException, MissingFileAssociationException, IOException {
     // FIXME implement serialization method
+    
+    try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(filename))){
+      outstream.writeObject(this);
+
+    
+    }
   }
+
+  
   
   /**
    * @param filename name of the file containing the serialized application's state

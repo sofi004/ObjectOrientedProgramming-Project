@@ -51,6 +51,14 @@ public class Spreadsheet implements Serializable {
     }
   }
 
+  public Range createRange(){
+    Range _range = new Range();
+    return  _range;
+  }
+
+  public void insert(int row, int column, Content content){
+
+  }
 
   /**
    * Insert specified content in specified address.
