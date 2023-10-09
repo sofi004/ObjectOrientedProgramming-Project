@@ -51,7 +51,7 @@ public class Spreadsheet implements Serializable {
     }
   }
 
-  public Range createRange(){
+  public Range buildRange(String rangeDescription){
     Range _range = new Range();
     return  _range;
   }

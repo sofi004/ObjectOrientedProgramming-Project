@@ -69,38 +69,38 @@ class Parser {
   }
 
   // parse the begining of an expression
-  Content parseContent(String contentSpecification) {
+  public Content parseContent(String contentSpecification) throws UnrecognizedEntryException {
     char c = contentSpecification.charAt(0);
 
     if (c == '=')
-      parseContentExpression(contentSpecification.substring(1));
+      return parseContentExpression(contentSpecification.substring(1));
     else
-      parseLiteral(contentSpecification);
+      return parseLiteral(contentSpecification);
   }
 
   private Literal parseLiteral(String literalExpression) throws UnrecognizedEntryException {
     if (literalExpression.charAt(0) == '\'')
-      return new literal String with literalExpression;
+      return new Character(literalExpression);
     else {
       try {
         int val = Integer.parseInt(literalExpression);
         return new Number(val);
       } catch (NumberFormatException nfe) {
-        throw new UnrecognizedEntryException("Número inválido: " + expression);
+        throw new UnrecognizedEntryException("Número inválido: " + literalExpression);
       }
     }
   }
 
   // contentSpecification is what comes after '='
-  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException /more exceptions */ {
+  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException /*more exceptions */ {
     if (contentSpecification.contains("("))
       return parseFunction(contentSpecification);
     // It is a reference
-    String[] address = contentSpecificationaddress.split(";");
-    return new Referência at Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]);
+    String[] address = contentSpecification.split(";");
+    return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]));
   }
 
-  private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException /more exceptions */ {
+  private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException /*more exceptions */ {
     String[] components = functionSpecification.split("[()]");
     if (components[1].contains(","))
       return parseBinaryFunction(components[0], components[1]);
@@ -125,7 +125,7 @@ class Parser {
   private Content parseArgumentExpression(String argExpression) throws UnrecognizedEntryException {
     if (argExpression.contains(";")  && argExpression.charAt(0) != '\'') {
       String[] address = argExpression.split(";");
-      return new referência at Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]);
+      return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]));
       // pode ser diferente do anterior em parseContentExpression
     } else
       return parseLiteral(argExpression);
