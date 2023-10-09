@@ -114,15 +114,11 @@ class Parser {
     Content arg1 = parseArgumentExpression(arguments[1]);
     
     return switch (functionName) {
-      case "ADD": new Add(arg0, arg1);
-      break;
-      case "SUB": new Sub(arg0, arg1);
-      break;
-      case "MUL": new Mul(arg0, arg1);
-      break;
-      case "DIV": new Div(arg0, arg1);
-      break;
-      default: dar erro com função inválida: functionName ;
+      case "ADD" -> new Add(arg0, arg1);
+      case "SUB" -> new Sub(arg0, arg1);
+      case "MUL" -> new Mul(arg0, arg1);
+      case "DIV" -> new Div(arg0, arg1);
+      default -> dar erro com função inválida: functionName ;
     };
   }
 
@@ -139,15 +135,11 @@ class Parser {
     throws UnrecognizedEntryException /* , more exceptions ? */ {
     Range range = _spreadsheet.buildRange(rangeDescription);
     return switch (functionName) {
-      case "CONCAT": new Concat(range);
-      break;
-      case "COASLECE": new Coaslece(range);
-      break;
-      case "PRODUCT": new Product(range);
-      break;
-      case "AVERAGE": new Average(range);
-      break;
-      default: dar erro com função inválida: functionName;
+      case "CONCAT" -> new Concat(range);
+      case "COALESTE" -> new Coaleste(range);
+      case "PRODUCT" -> new Product(range);
+      case "AVERAGE" -> new Average(range);
+      default -> dar erro com função inválida: functionName;
     }
   }
 
