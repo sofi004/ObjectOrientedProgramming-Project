@@ -19,7 +19,7 @@ import xxl.core.exception.UnrecognizedEntryException;
 /**
  * Class representing a spreadsheet application.
  */
-public class Calculator implements Serializable{
+public class Calculator{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
   
@@ -58,7 +58,7 @@ public class Calculator implements Serializable{
     // FIXME implement serialization method
     
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(filename))){
-      outstream.writeObject(this);
+      outstream.writeObject(_spreadsheet);
 
     
     }
@@ -77,8 +77,7 @@ public class Calculator implements Serializable{
     // FIXME implement serialization method
 
     try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))){
-      Calculator loadedCalculator = (Calculator) in.readObject();
-      this._spreadsheet = loadedCalculator.getSpreadsheet();
+      _spreadsheet = (Spreadsheet)in.readObject();
 
     } catch (ClassNotFoundException | IOException e){
       throw new UnavailableFileException(filename);

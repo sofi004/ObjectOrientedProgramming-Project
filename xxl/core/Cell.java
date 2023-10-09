@@ -1,6 +1,8 @@
 package xxl.core;
 
-public class Cell {
+import java.io.Serializable;
+
+public class Cell implements Serializable{
     private int _column;
     private int _row;
     private Content _content;
