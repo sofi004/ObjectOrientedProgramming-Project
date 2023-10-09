@@ -116,7 +116,7 @@ class Parser {
     return switch (functionName) {
       case "ADD": new Add(arg0, arg1);
       break;
-      case "SUB":new Sub(arg0, arg1);
+      case "SUB": new Sub(arg0, arg1);
       break;
       case "MUL": new Mul(arg0, arg1);
       break;
