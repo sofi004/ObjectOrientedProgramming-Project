@@ -114,10 +114,10 @@ class Parser {
     Content arg1 = parseArgumentExpression(arguments[1]);
     
     return switch (functionName) {
-      case "ADD" -> new Add function with (arg0, arg1);
-      case "SUB" -> new Sub function with (arg0, arg1);
-      case "MUL" -> new Mul function with (arg0, arg1);
-      case "DIV" -> new Div function with (arg0, arg1);
+      case "ADD" -> new Add(arg0, arg1);
+      case "SUB" -> new Sub(arg0, arg1);
+      case "MUL" -> new Mul(arg0, arg1);
+      case "DIV" -> new Div(arg0, arg1);
       default -> dar erro com função inválida: functionName ;
     };
   }
