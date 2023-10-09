@@ -135,18 +135,14 @@ class Parser {
     throws UnrecognizedEntryException /* , more exceptions ? */ {
     Range range = _spreadsheet.buildRange(rangeDescription);
     return switch (functionName) {
-      case "CONCAT" -> new Concat com range;
+      case "CONCAT" -> new Concat(range);
       break;
-      
-      case "COASLECE" -> new Coaslece com range;
+      case "COASLECE" -> new Coaslece(range);
       break;
-
-      case "PRODUCT" -> new Product com range;
+      case "PRODUCT" -> new Product(range);
       break;
-
-      case "AVERAGE" -> new Average com range;
+      case "AVERAGE" -> new Average(range);
       break;
-
       default: dar erro com função inválida: functionName;
     }
   }
