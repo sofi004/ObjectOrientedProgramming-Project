@@ -1,8 +1,8 @@
 package xxl.core;
 
 public class Coaleste extends IntervalFunction {
-    public Coaleste(Range range){
-        super(range);
+    public Coaleste(Range range, String name){
+        super(range, name);
     }
     
     public String toString(){

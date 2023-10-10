@@ -1,8 +1,8 @@
 package xxl.core;
 
 public class Sub extends BinaryFunction {
-    public Sub(Content arg0, Content arg1){
-        super(arg0, arg1);
+    public Sub(Content arg0, Content arg1, String name){
+        super(arg0, arg1, name);
     }
     
     public String toString(){

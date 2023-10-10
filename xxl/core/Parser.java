@@ -98,7 +98,7 @@ class Parser {
       return parseFunction(contentSpecification);
     // It is a reference
     String[] address = contentSpecification.split(";");
-    return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]));
+    return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]), _spreadsheet);
   }
 
   private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException, 
@@ -117,10 +117,10 @@ class Parser {
     Content arg1 = parseArgumentExpression(arguments[1]);
     
     return switch (functionName) {
-      case "ADD" -> new Add(arg0, arg1);
-      case "SUB" -> new Sub(arg0, arg1);
-      case "MUL" -> new Mul(arg0, arg1);
-      case "DIV" -> new Div(arg0, arg1);
+      case "ADD" -> new Add(arg0, arg1, functionName);
+      case "SUB" -> new Sub(arg0, arg1, functionName);
+      case "MUL" -> new Mul(arg0, arg1, functionName);
+      case "DIV" -> new Div(arg0, arg1, functionName);
       default -> throw new InvalidFunctionException(functionName);
     };
   }
@@ -128,7 +128,7 @@ class Parser {
   private Content parseArgumentExpression(String argExpression) throws UnrecognizedEntryException {
     if (argExpression.contains(";")  && argExpression.charAt(0) != '\'') {
       String[] address = argExpression.split(";");
-      return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]));
+      return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]), _spreadsheet);
       // pode ser diferente do anterior em parseContentExpression
     } else
       return parseLiteral(argExpression);
@@ -138,35 +138,11 @@ class Parser {
     throws UnrecognizedEntryException, InvalidFunctionException /* , more exceptions ? */ {
     Range range = _spreadsheet.buildRange(rangeDescription);
     return switch (functionName) {
-      case "CONCAT" -> new Concat(range);
-      case "COALESTE" -> new Coaleste(range);
-      case "PRODUCT" -> new Product(range);
-      case "AVERAGE" -> new Average(range);
+      case "CONCAT" -> new Concat(range, functionName);
+      case "COALESTE" -> new Coaleste(range, functionName);
+      case "PRODUCT" -> new Product(range, functionName);
+      case "AVERAGE" -> new Average(range, functionName);
       default -> throw new InvalidFunctionException(functionName);
     };
-  }
-
-  /* Na classe Spreadsheet preciso de algo com a seguinte funcionalidade
-  Range createRange(String range) throws ? {
-    String[] rangeCoordinates;
-    int firstRow, firstColumn, lastRow, lastColumn;
-    
-    if (range.indexOf(':') != -1) {
-      rangeCoordinates = range.split("[:;]");
-      firstRow = Integer.parseInt(rangeCoordinates[0]);
-      firstColumn = Integer.parseInt(rangeCoordinates[1]);
-      lastRow = Integer.parseInt(rangeCoordinates[2]);
-      lastColumn = Integer.parseInt(rangeCoordinates[3]);
-    } else {
-      rangeCoordinates = range.split(";");
-      firstRow = lastRow = Integer.parseInt(rangeCoordinates[0]);
-      firstColumn = lastColumn = Integer.parseInt(rangeCoordinates[1]);
-    }
-
-    // check if coordinates are valid
-    // if yes
-    return new Range with firstRow, firstColumn, lastRow, lastColumn and spreadsheet;
-  }
-  */
-  
+  } 
 }
