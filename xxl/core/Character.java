@@ -9,7 +9,6 @@ public class Character extends Literal{
     }
 
     public String toString(){
-        String z = "Example";
-        return z;
+        return _value;
     }
 }

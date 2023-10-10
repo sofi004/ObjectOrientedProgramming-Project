@@ -14,28 +14,27 @@ public class Spreadsheet implements Serializable {
   @Serial
   private static final long serialVersionUID = 202308312359L;
   
-  private int _row;
-  private int _column;
+  private int _height;
+  private int _width;
   private boolean _changed;
   private Range _cutBuffer;
   private Cell[][] _listCells;
-  private User[] _listUsers;
 
   public Spreadsheet(int row, int column){
-    _row = row;
-    _column = column;
+    _height = row;
+    _width = column;
     _changed = false;
     _listCells = new Cell[row][column];
     createListCell();
   }
 
 
-  public int getRow(){
-    return _row;
+  public int getHeight(){
+    return _height;
   }
 
-  public int getColumn(){
-    return _column;
+  public int getWidth(){
+    return _width;
   }
 
   public boolean isChanged(){
@@ -44,20 +43,47 @@ public class Spreadsheet implements Serializable {
 
 
   public void createListCell(){
-    for(int i = 0; i < _row; i++){
-      for(int j = 0; j < _column; j++){
+    for(int i = 0; i < _height; i++){
+      for(int j = 0; j < _width; j++){
         _listCells[i][j] = new Cell(i, j);
       }
     }
   }
 
   public Range buildRange(String rangeDescription){
-    Range _range = new Range();
-    return  _range;
+    String[] rangeCoordinates;
+    int firstRow, firstColumn, lastRow, lastColumn;
+    
+    if (rangeDescription.indexOf(':') != -1) {
+      rangeCoordinates = rangeDescription.split("[:;]");
+      firstRow = Integer.parseInt(rangeCoordinates[0]);
+      firstColumn = Integer.parseInt(rangeCoordinates[1]);
+      lastRow = Integer.parseInt(rangeCoordinates[2]);
+      lastColumn = Integer.parseInt(rangeCoordinates[3]);
+    } else {
+      rangeCoordinates = rangeDescription.split(";");
+      firstRow = lastRow = Integer.parseInt(rangeCoordinates[0]);
+      firstColumn = lastColumn = Integer.parseInt(rangeCoordinates[1]);
+    }
+
+    // check if coordinates are valid
+    // if yes
+    return new Range(firstRow, firstColumn, lastRow, lastColumn, this);
   }
 
   public void insert(int row, int column, Content content){
 
+  }
+
+  public Cell searchCell(int row, int column){
+    for(Cell[] l: _listCells){
+      for(Cell c: l){
+        if((c.getRow() == row) && (c.getCollumn() == column)){
+          return c;
+        }
+      }
+    }
+    return null;
   }
 
   /**

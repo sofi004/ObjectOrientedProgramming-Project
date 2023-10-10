@@ -9,7 +9,6 @@ public class Number extends Literal{
     }
 
     public String toString(){
-        String z = "Example";
-        return z;
+        return String.valueOf(_value);
     }
 }

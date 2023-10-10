@@ -24,4 +24,7 @@ public class Cell implements Serializable{
     public void insertContent(Content content){
         _content = content;
     }
+    public String toString(){
+            return _content.toString(); 
+    }
 }
