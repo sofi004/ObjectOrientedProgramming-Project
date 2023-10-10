@@ -50,7 +50,7 @@ public class Spreadsheet implements Serializable {
     }
   }
 
-  public Range buildRange(String rangeDescription){
+  public Range buildRange(String rangeDescription)/* temos de meter excecoes*/{
     String[] rangeCoordinates;
     int firstRow, firstColumn, lastRow, lastColumn;
     
