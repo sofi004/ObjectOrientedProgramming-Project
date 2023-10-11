@@ -1,6 +1,7 @@
 package xxl.core;
+import java.io.Serializable;
 
-public class Character extends Literal{
+public class Character extends Literal implements Serializable{
     private String _value;
 
 

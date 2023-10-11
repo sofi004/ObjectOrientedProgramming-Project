@@ -1,6 +1,7 @@
 package xxl.core;  
+import java.io.Serializable;
 
-public class Number extends Literal{
+public class Number extends Literal implements Serializable{
     private int _value;
     
 

@@ -14,7 +14,7 @@ public class Cell implements Serializable{
     public Cell(int row, int column){
         _column = column;
         _row = row;
-        _content = new Null();
+        _content = new Nulla();
     }
 
     public int getRow(){

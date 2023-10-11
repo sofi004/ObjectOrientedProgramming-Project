@@ -9,4 +9,8 @@ public class Average extends IntervalFunction {
         String z = "Example";
         return z;
     }
+
+    protected Literal compute(){
+        return new Number(0);
+    }
 }
