@@ -85,7 +85,7 @@ public class Calculator{
    * @throws UnavailableFileException if the specified file does not exist or there is
    *         an error while processing this file.
    */
-  public void load(String filename) throws UnavailableFileException {
+  public void load(String filename) throws UnavailableFileException, MissingFileAssociationException, IOException {
 
     // FIXME implement serialization method
 
