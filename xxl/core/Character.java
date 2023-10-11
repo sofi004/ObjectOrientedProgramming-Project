@@ -9,6 +9,10 @@ public class Character extends Literal{
     }
 
     public String toString(){
+        return _value;  
+    }
+
+    public String asString(){
         return _value;
     }
 }

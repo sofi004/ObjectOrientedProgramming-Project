@@ -1,8 +1,8 @@
 package xxl.core;
 
 public abstract class BinaryFunction extends Function{
-    private Content _arg0;
-    private Content _arg1;
+    protected Content _arg0;
+    protected Content _arg1;
 
     public BinaryFunction(Content arg0, Content arg1, String name){
         super(name);
@@ -11,8 +11,14 @@ public abstract class BinaryFunction extends Function{
     }
 
     public String toString(){
-        String func = "=" + super.getName() + "(" + _arg0.toString() + "," + _arg1.toString() + ")"; 
+        String func = compute().toString() + "=" + super.getName() + "(" + _arg0.toString() + "," + _arg1.toString() + ")"; 
         return func;
         
+    }
+    public Content getFirstArg(){
+        return _arg0;
+    }
+    public Content getSecondArg(){
+        return _arg1;
     }
 }

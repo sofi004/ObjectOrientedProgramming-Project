@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import xxl.core.exception.InvalidFunctionException;
 import xxl.core.exception.UnrecognizedEntryException;
 
-class Parser {
+public class Parser {
 
   private Spreadsheet _spreadsheet;
   

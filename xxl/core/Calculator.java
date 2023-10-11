@@ -22,6 +22,7 @@ import xxl.core.exception.UnrecognizedEntryException;
 public class Calculator{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
+  private String _filename;
   
   // FIXME add more fields and methods if needed
   
@@ -30,6 +31,9 @@ public class Calculator{
    *
    * @returns the current spreadsheet of this application. This reference can be null.
    */
+  public void addSpreadsheet(Spreadsheet spreadsheet){
+    _spreadsheet = spreadsheet;
+  }
   public final Spreadsheet getSpreadsheet() {
     return _spreadsheet;
   }
@@ -43,6 +47,14 @@ public class Calculator{
    */
   public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
     // FIXME implement serialization method
+    try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(_filename))){
+      outstream.writeObject(_spreadsheet);
+
+    }
+  }
+
+  public String getFile(){
+    return _filename;
   }
   
   /**
@@ -59,6 +71,7 @@ public class Calculator{
     
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(filename))){
       outstream.writeObject(_spreadsheet);
+      _filename = filename;
 
     
     }

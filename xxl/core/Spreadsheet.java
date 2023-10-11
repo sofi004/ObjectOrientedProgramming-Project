@@ -45,7 +45,7 @@ public class Spreadsheet implements Serializable {
   public void createListCell(){
     for(int i = 0; i < _height; i++){
       for(int j = 0; j < _width; j++){
-        _listCells[i][j] = new Cell(i, j);
+        _listCells[i][j] = new Cell(i + 1, j + 1);
       }
     }
   }
@@ -72,7 +72,7 @@ public class Spreadsheet implements Serializable {
   }
 
   public void insert(int row, int column, Content content){
-
+    searchCell(row, column).insertContent(content);
   }
 
   public Cell searchCell(int row, int column){

@@ -14,4 +14,8 @@ public class Reference extends Content{
     public String toString(){
         return String.valueOf(_row)+";"+String.valueOf(_column);
     }
+
+    Literal value(){
+        return _spreadsheet.searchCell(_row, _column).value();
+    }
 }

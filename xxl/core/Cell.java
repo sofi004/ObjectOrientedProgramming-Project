@@ -7,10 +7,14 @@ public class Cell implements Serializable{
     private int _row;
     private Content _content;
 
+    Literal value(){
+        return value();
+    }
 
     public Cell(int row, int column){
         _column = column;
         _row = row;
+        _content = new Null();
     }
 
     public int getRow(){
@@ -25,6 +29,6 @@ public class Cell implements Serializable{
         _content = content;
     }
     public String toString(){
-            return _content.toString(); 
+            return  _row + ";" + _column + "|" + _content.toString(); 
     }
 }

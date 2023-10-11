@@ -8,7 +8,12 @@ public class Number extends Literal{
         _value = val;
     }
 
+    public int asInt(){
+        return _value;
+    }
+
     public String toString(){
         return String.valueOf(_value);
     }
+
 }
