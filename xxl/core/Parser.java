@@ -98,7 +98,7 @@ public class Parser {
       return parseFunction(contentSpecification);
     // It is a reference
     String[] address = contentSpecification.split(";");
-    return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]), _spreadsheet);
+    return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]), _spreadsheet); /*IF necessary trim second argument!! */
   }
 
   private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException, 
