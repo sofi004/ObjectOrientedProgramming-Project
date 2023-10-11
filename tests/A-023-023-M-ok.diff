@@ -1,0 +1,19 @@
+*** tests/A-023-023-M-ok.out	2023-10-06 12:23:54.720381000 +0100
+--- tests/A-023-023-M-ok.outhyp	2023-10-12 00:47:27.312390042 +0100
+***************
+*** 14,20 ****
+  6 - Colar
+  7 - Mostrar 'cut buffer'
+  0 - Sair
+! Escolha uma opção: Especifique a gama (startline;startcol:endline;endcol): 3;3|9=MUL(4;1,4;1)
+  Menu de Edição
+  1 - Visualizar
+  2 - Inserir
+--- 14,20 ----
+  6 - Colar
+  7 - Mostrar 'cut buffer'
+  0 - Sair
+! Escolha uma opção: Especifique a gama (startline;startcol:endline;endcol): 3;3|Example
+  Menu de Edição
+  1 - Visualizar
+  2 - Inserir

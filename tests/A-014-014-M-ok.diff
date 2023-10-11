@@ -1,0 +1,19 @@
+*** tests/A-014-014-M-ok.out	2023-10-06 12:23:45.280392000 +0100
+--- tests/A-014-014-M-ok.outhyp	2023-10-12 00:47:27.028378642 +0100
+***************
+*** 16,22 ****
+  0 - Sair
+  Escolha uma opção: Especifique a gama (startline;startcol:endline;endcol): 1;1|5
+  1;2|49
+! 1;3|5=1;1
+  Menu de Edição
+  1 - Visualizar
+  2 - Inserir
+--- 16,22 ----
+  0 - Sair
+  Escolha uma opção: Especifique a gama (startline;startcol:endline;endcol): 1;1|5
+  1;2|49
+! 1;3|1;1
+  Menu de Edição
+  1 - Visualizar
+  2 - Inserir
