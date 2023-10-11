@@ -8,7 +8,7 @@ public class Cell implements Serializable{
     private Content _content;
 
     Literal value(){
-        return value();
+        return _content.value();
     }
 
     public Cell(int row, int column){
