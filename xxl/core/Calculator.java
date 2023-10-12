@@ -50,6 +50,7 @@ public class Calculator{
     // FIXME implement serialization method
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(_filename))){
       outstream.writeObject(_spreadsheet);
+      _spreadsheet.setSaved(true);
 
     }
   }
@@ -73,6 +74,7 @@ public class Calculator{
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(filename))){
       outstream.writeObject(_spreadsheet);
       _spreadsheet.setName(filename);
+      _spreadsheet.setSaved(true);
 
     
     }

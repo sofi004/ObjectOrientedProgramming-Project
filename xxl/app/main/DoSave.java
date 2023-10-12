@@ -15,8 +15,7 @@ class DoSave extends Command<Calculator> {
 
   DoSave(Calculator receiver) {
     super(Label.SAVE, receiver, xxl -> xxl.getSpreadsheet() != null);
-    if (_receiver.getSpreadsheet() != null &&_receiver.getSpreadsheet().isNamed() == false)
-      addStringField("filename", Message.newSaveAs());
+    addStringField("filename", Message.newSaveAs());
   }
   
   @Override

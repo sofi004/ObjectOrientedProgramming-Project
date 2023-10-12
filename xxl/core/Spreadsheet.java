@@ -17,7 +17,7 @@ public class Spreadsheet implements Serializable {
   
   private int _height;
   private int _width;
-  private boolean _changed;
+  private boolean _saved;
   private Range _cutBuffer;
   private Cell[][] _listCells;
   private String _name;
@@ -26,7 +26,7 @@ public class Spreadsheet implements Serializable {
   public Spreadsheet(int row, int column){
     _height = row;
     _width = column;
-    _changed = false;
+    _saved = false;
     _listCells = new Cell[row][column];
     createListCell();
     _named = false;
@@ -48,10 +48,13 @@ public class Spreadsheet implements Serializable {
     return _width;
   }
 
-  public boolean isChanged(){
-    return _changed;
+  public boolean isSaved(){
+    return _saved;
   }
 
+  public void setSaved(boolean val){
+    _saved = val;
+  }
 
   public void createListCell(){
     for(int i = 0; i < _height; i++){

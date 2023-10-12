@@ -29,7 +29,18 @@ class DoOpen extends Command<Calculator> {
       throw new FileOpenFailedException(e);
       }
     */
-   try{
+    try{
+      if(_receiver.getSpreadsheet() != null &&  !_receiver.getSpreadsheet().isSaved()){
+        boolean booleanAnswer = Form.confirm(Message.saveBeforeExit());
+        if(booleanAnswer){
+          if( _receiver.getSpreadsheet().isNamed())
+            _receiver.save();
+          else{
+            String fileName = stringField("FileName");
+            _receiver.saveAs(fileName);
+          }
+        }
+      }
       String nameSaveAs = stringField("filename");
       _receiver.load(nameSaveAs);
     }
