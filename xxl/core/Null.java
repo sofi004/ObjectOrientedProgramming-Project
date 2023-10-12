@@ -6,6 +6,9 @@ public class Null extends Literal implements Serializable{
     }
 
     public String toString(){
-        return "'";
+        return "";
+    }
+    public Literal value(){
+        return new Character("#VALUE");
     }
 }

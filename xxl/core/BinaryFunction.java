@@ -11,7 +11,10 @@ public abstract class BinaryFunction extends Function{
     }
 
     public String toString(){
-        String func = compute().toString() + "=" + super.getName() + "(" + _arg0.toString() + "," + _arg1.toString() + ")"; 
+        String[] arg0 = _arg0.toString().split("=");
+        String[] arg1 = _arg1.toString().split("=");
+        
+        String func = compute().toString() + "=" + super.getName() + "(" + arg0[arg0.length - 1] + "," + arg1[arg1.length-1] + ")"; 
         return func;
         
     }
