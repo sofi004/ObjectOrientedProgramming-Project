@@ -36,9 +36,10 @@ class DoShow extends Command<Spreadsheet> {
       _display.addLine(c.toString());
     }
     }
-    catch(CommandException e){      
+    catch(ArrayIndexOutOfBoundsException e){      
       throw new InvalidCellRangeException(rangeDescription);
     }
+    _display.display();
 
   }
 }
