@@ -1,8 +1,8 @@
 package xxl.core;
 import java.io.Serializable;
 
-public class Nulla extends Literal implements Serializable{
-    public Nulla(){
+public class Null extends Literal implements Serializable{
+    public Null(){
     }
 
     public String toString(){

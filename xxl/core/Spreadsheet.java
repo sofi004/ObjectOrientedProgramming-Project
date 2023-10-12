@@ -6,6 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 import xxl.core.exception.UnrecognizedEntryException;
+import xxl.app.exception.InvalidCellRangeException;
 
 /**
  * Class representing a spreadsheet.
@@ -50,7 +51,7 @@ public class Spreadsheet implements Serializable {
     }
   }
 
-  public Range buildRange(String rangeDescription)/* temos de meter excecoes*/{
+  public Range buildRange(String rangeDescription) throws InvalidCellRangeException/* temos de meter excecoes*/{
     String[] rangeCoordinates;
     int firstRow, firstColumn, lastRow, lastColumn;
     
@@ -71,7 +72,7 @@ public class Spreadsheet implements Serializable {
     return new Range(firstRow, firstColumn, lastRow, lastColumn, this);
   }
 
-  public void insert(int row, int column, Content content){
+  public void insert(int row, int column, Content content) throws UnrecognizedEntryException{
     searchCell(row, column).insertContent(content);
   }
 
@@ -94,7 +95,4 @@ public class Spreadsheet implements Serializable {
    * @param contentSpecification the specification in a string format of the content to put
    *        in the specified cell.
    */
-  public void insertContent(int row, int column, String contentSpecification) throws UnrecognizedEntryException /* FIXME maybe add exceptions */ {
-    //FIXME implement method
-  }
 }

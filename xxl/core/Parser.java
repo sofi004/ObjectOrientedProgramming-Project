@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.util.Collection;
 import java.util.ArrayList;
 
+import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.exception.InvalidFunctionException;
 import xxl.core.exception.UnrecognizedEntryException;
 
@@ -22,7 +23,7 @@ public class Parser {
     _spreadsheet = spreadsheet;
   }
 
-  Spreadsheet parseFile(String filename) throws IOException, UnrecognizedEntryException, InvalidFunctionException /* More Exceptions? */ {
+  Spreadsheet parseFile(String filename) throws IOException, UnrecognizedEntryException, InvalidFunctionException, InvalidCellRangeException /* More Exceptions? */ {
     try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
       parseDimensions(reader);
 
@@ -55,7 +56,7 @@ public class Parser {
     _spreadsheet = new Spreadsheet(rows, columns);
   }
 
-  private void parseLine(String line) throws UnrecognizedEntryException, InvalidFunctionException /*, more exceptions? */{
+  private void parseLine(String line) throws UnrecognizedEntryException, InvalidFunctionException, InvalidCellRangeException /*, more exceptions? */{
     String[] components = line.split("\\|");
 
     if (components.length == 1) // do nothing
@@ -70,7 +71,7 @@ public class Parser {
   }
 
   // parse the begining of an expression
-  public Content parseContent(String contentSpecification) throws UnrecognizedEntryException, InvalidFunctionException {
+  public Content parseContent(String contentSpecification) throws UnrecognizedEntryException, InvalidFunctionException, InvalidCellRangeException {
     char c = contentSpecification.charAt(0);
 
     if (c == '=')
@@ -93,7 +94,7 @@ public class Parser {
   }
 
   // contentSpecification is what comes after '='
-  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException, InvalidFunctionException /*more exceptions */ {
+  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException, InvalidFunctionException, InvalidCellRangeException /*more exceptions */ {
     if (contentSpecification.contains("("))
       return parseFunction(contentSpecification);
     // It is a reference
@@ -102,7 +103,7 @@ public class Parser {
   }
 
   private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException, 
-    InvalidFunctionException /*more exceptions */ {
+    InvalidFunctionException, InvalidCellRangeException /*more exceptions */ {
     String[] components = functionSpecification.split("[()]");
     if (components[1].contains(","))
       return parseBinaryFunction(components[0], components[1]);
@@ -135,7 +136,7 @@ public class Parser {
   }
 
   private Content parseIntervalFunction(String functionName, String rangeDescription)
-    throws UnrecognizedEntryException, InvalidFunctionException /* , more exceptions ? */ {
+    throws UnrecognizedEntryException, InvalidFunctionException, InvalidCellRangeException /* , more exceptions ? */ {
     Range range = _spreadsheet.buildRange(rangeDescription);
     return switch (functionName) {
       case "CONCAT" -> new Concat(range, functionName);

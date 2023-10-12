@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.exception.ImportFileException;
 import xxl.core.exception.InvalidFunctionException;
 import xxl.core.exception.MissingFileAssociationException;
@@ -103,7 +104,7 @@ public class Calculator{
    * @param filename name of the text input file
    * @throws ImportFileException
    */
-  public void importFile(String filename) throws ImportFileException, InvalidFunctionException {
+  public void importFile(String filename) throws ImportFileException, InvalidFunctionException, InvalidCellRangeException {
     try {
       // FIXME open import file and feed entries to new spreadsheet (in a cycle)
       //       each entry is inserted using insertContent of Spreadsheet. Set new

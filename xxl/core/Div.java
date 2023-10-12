@@ -11,6 +11,6 @@ public class Div extends BinaryFunction {
     }
 
     protected Literal compute(){
-        return new Number(0);
+        return new Number(_arg0.value().asInt() / _arg1.value().asInt());
     }
 }
