@@ -20,6 +20,8 @@ public class Spreadsheet implements Serializable {
   private boolean _changed;
   private Range _cutBuffer;
   private Cell[][] _listCells;
+  private String _name;
+  private boolean _named;
 
   public Spreadsheet(int row, int column){
     _height = row;
@@ -29,6 +31,9 @@ public class Spreadsheet implements Serializable {
     createListCell();
   }
 
+  public void setName(String name){
+    _name = name;
+  }
 
   public int getHeight(){
     return _height;
