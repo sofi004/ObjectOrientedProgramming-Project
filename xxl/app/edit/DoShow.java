@@ -26,7 +26,7 @@ class DoShow extends Command<Spreadsheet> {
   }
   
   @Override
-  protected final void execute() throws CommandException, InvalidCellRangeException {
+  protected final void execute() throws ArrayIndexOutOfBoundsException, InvalidCellRangeException {
     // FIXME implement command
     String rangeDescription = stringField("range");
     try{
