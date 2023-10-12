@@ -3,6 +3,7 @@ package xxl.core;
 import java.io.Serializable;
 
 public class Cell implements Serializable{
+
     private int _column;
     private int _row;
     private Content _content;
@@ -28,6 +29,7 @@ public class Cell implements Serializable{
     public void insertContent(Content content){
         _content = content;
     }
+    
     public String toString(){
             return  _row + ";" + _column + "|" + _content.toString(); 
     }

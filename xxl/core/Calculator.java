@@ -3,11 +3,9 @@ package xxl.core;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-
 import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.exception.ImportFileException;
 import xxl.core.exception.InvalidFunctionException;
@@ -15,17 +13,14 @@ import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
 
-// FIXME import classes
-
 /**
- * Class representing a spreadsheet application.
- */
+* Class representing a spreadsheet application.
+*/
 public class Calculator{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
   private String _filename;
   
-  // FIXME add more fields and methods if needed
   
   /**
    * Return the current spreadsheet.
@@ -38,6 +33,7 @@ public class Calculator{
   public final Spreadsheet getSpreadsheet() {
     return _spreadsheet;
   }
+
 
   /**
    * Saves the serialized application's state into the file associated to the current network.
@@ -55,10 +51,17 @@ public class Calculator{
     }
   }
 
+
+  /**
+  * Get the name of the file associated with the current spreadsheet.
+  *
+  * @return the name of the file associated with the current spreadsheet, or null if there is no associated file.
+  */
   public String getFile(){
     return _filename;
   }
   
+
   /**
    * Saves the serialized application's state into the specified file. The current network is
    * associated to this file.
@@ -69,18 +72,13 @@ public class Calculator{
    * @throws IOException if there is some error while serializing the state of the network to disk.
    */
   public void saveAs(String filename) throws FileNotFoundException, MissingFileAssociationException, IOException {
-    // FIXME implement serialization method
-    
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(filename))){
       outstream.writeObject(_spreadsheet);
       _spreadsheet.setName(filename);
       _spreadsheet.setSaved(true);
-
-    
     }
   }
 
-  
   
   /**
    * @param filename name of the file containing the serialized application's state
@@ -89,17 +87,14 @@ public class Calculator{
    *         an error while processing this file.
    */
   public void load(String filename) throws UnavailableFileException, MissingFileAssociationException, IOException {
-
-    // FIXME implement serialization method
-
     try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))){
       _spreadsheet = (Spreadsheet)in.readObject();
-
     } catch (ClassNotFoundException | IOException e){
       throw new UnavailableFileException(filename);
     }
   }
   
+
   /**
    * Read text input file and create domain entities.
    *
@@ -108,13 +103,9 @@ public class Calculator{
    */
   public void importFile(String filename) throws ImportFileException, InvalidFunctionException, InvalidCellRangeException {
     try {
-      // FIXME open import file and feed entries to new spreadsheet (in a cycle)
-      //       each entry is inserted using insertContent of Spreadsheet. Set new
-      // spreadsheet as the active one.
-      // ....
       Parser parse = new Parser(_spreadsheet);
       _spreadsheet = parse.parseFile(filename);
-    } catch (IOException | UnrecognizedEntryException /* FIXME maybe other exceptions */ e) {
+    } catch (IOException | UnrecognizedEntryException e) {
       throw new ImportFileException(filename, e);
     }
   } 

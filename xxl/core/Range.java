@@ -2,9 +2,8 @@ package xxl.core;
 
 import java.util.ArrayList;
 
-import xxl.app.exception.InvalidCellRangeException;
-
 public class Range {
+
     private int _beginRow;
     private int _beginColumn;
     private int _endRow;
@@ -23,7 +22,6 @@ public class Range {
     }
 
     ArrayList<Cell> getCells(){
-
         for(int i = _beginRow; i <= _endRow; i++){
             for(int k = _beginColumn; k <= _endColumn; k++){
                 _listCells.add(_spreadsheet.searchCell(i, k));
@@ -39,12 +37,15 @@ public class Range {
     public int getBeginRow(){
         return _beginRow;
     }
+
     public int getBeginColumn(){
         return _beginColumn;
     }
+
     public int getEndRow(){
         return _endRow;
     }
+    
     public int getEndColumn(){
         return _endColumn;
     }

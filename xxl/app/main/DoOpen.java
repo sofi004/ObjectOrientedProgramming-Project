@@ -6,7 +6,6 @@ import pt.tecnico.uilib.menus.CommandException;
 import xxl.app.exception.FileOpenFailedException;
 import xxl.core.Calculator;
 import java.io.IOException;
-// FIXME import classes
 import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.UnavailableFileException;
 
@@ -22,13 +21,6 @@ class DoOpen extends Command<Calculator> {
   
   @Override
   protected final void execute() throws CommandException, FileOpenFailedException {
-    /*
-      try {
-      //FIXME implement command
-      } catch (UnavailableFileException e) {
-      throw new FileOpenFailedException(e);
-      }
-    */
     try{
       if(_receiver.getSpreadsheet() != null &&  !_receiver.getSpreadsheet().isSaved()){
         boolean booleanAnswer = Form.confirm(Message.saveBeforeExit());

@@ -1,6 +1,7 @@
 package xxl.core;
 
 public abstract class Function extends Content{
+
     private String _name;
 
     protected abstract Literal compute();
@@ -13,6 +14,7 @@ public abstract class Function extends Content{
         return _name;
     }
 
+    @Override
     public Literal value(){
         return compute();
     }

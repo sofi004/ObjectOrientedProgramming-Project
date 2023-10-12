@@ -1,11 +1,9 @@
 package xxl.app.main;
 
-import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import xxl.app.exception.FileOpenFailedException;
 import xxl.core.Calculator;
 import java.io.*;
-// FIXME import classes
 import xxl.core.exception.MissingFileAssociationException;
 
 /**
@@ -20,7 +18,6 @@ class DoSave extends Command<Calculator> {
   
   @Override
   protected final void execute() throws FileOpenFailedException {
-    // FIXME implement command and create a local Form
     try{
       if (_receiver.getSpreadsheet().isNamed() == false){
         String nameSaveAs = stringField("filename");

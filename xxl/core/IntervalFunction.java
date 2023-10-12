@@ -7,9 +7,12 @@ public abstract class IntervalFunction extends Function{
         super(name);
         _range = range;
     }
+
+    @Override
     public String toString(){
         String func = "=" + super.getName() + "(" + _range.getBeginRow() + ";" + 
         _range.getBeginColumn() + ":" + _range.getEndRow() + ";" + _range.getEndColumn() + ")"; 
         return func;
     }
+
 }

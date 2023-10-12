@@ -1,11 +1,7 @@
 package xxl.core;
 
-// FIXME import classes
-
 import java.io.Serial;
 import java.io.Serializable;
-
-import xxl.core.exception.UnrecognizedEntryException;
 import xxl.app.exception.InvalidCellRangeException;
 
 /**
@@ -23,6 +19,7 @@ public class Spreadsheet implements Serializable {
   private String _name;
   private boolean _named;
 
+
   public Spreadsheet(int row, int column){
     _height = row;
     _width = column;
@@ -32,9 +29,12 @@ public class Spreadsheet implements Serializable {
     _named = false;
   }
 
+
   public boolean isNamed(){
     return _named;
   }
+
+
   public void setName(String name){
     _name = name;
     _named = true;
@@ -44,17 +44,21 @@ public class Spreadsheet implements Serializable {
     return _height;
   }
 
+
   public int getWidth(){
     return _width;
   }
+
 
   public boolean isSaved(){
     return _saved;
   }
 
+
   public void setSaved(boolean val){
     _saved = val;
   }
+
 
   public void createListCell(){
     for(int i = 0; i < _height; i++){
@@ -64,7 +68,8 @@ public class Spreadsheet implements Serializable {
     }
   }
 
-  public Range buildRange(String rangeDescription) throws InvalidCellRangeException/* temos de meter excecoes*/{
+
+  public Range buildRange(String rangeDescription) throws InvalidCellRangeException{
     String[] rangeCoordinates;
     int firstRow, firstColumn, lastRow, lastColumn;
     if (rangeDescription.indexOf(':') != -1) {
@@ -81,26 +86,19 @@ public class Spreadsheet implements Serializable {
     if(firstRow > lastRow || firstColumn > lastColumn || lastRow > _height || lastColumn > _width){
       throw new InvalidCellRangeException(rangeDescription);
     }
-    // check if coordinates are valid
-    // if yes
-    
     return new Range(firstRow, firstColumn, lastRow, lastColumn, this);
   }
+
 
   public void insert(int row, int column, Content content){
       searchCell(row, column).insertContent(content);
   }
 
+
   public Cell searchCell(int row, int column){
-    for(Cell[] l: _listCells){
-      for(Cell c: l){
-        if((c.getRow() == row) && (c.getCollumn() == column)){
-          return c;
-        }
-      }
-    }
-    return null;
+    return _listCells[row-1][column-1];
   }
+  
 
   /**
    * Insert specified content in specified address.
@@ -110,4 +108,5 @@ public class Spreadsheet implements Serializable {
    * @param contentSpecification the specification in a string format of the content to put
    *        in the specified cell.
    */
+
 }

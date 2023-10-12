@@ -1,14 +1,10 @@
 package xxl.app.main;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
-import pt.tecnico.uilib.menus.CommandException;
 import xxl.app.exception.FileOpenFailedException;
 import xxl.core.Calculator;
-import xxl.core.Parser;
 import xxl.core.Spreadsheet;
 import xxl.core.exception.MissingFileAssociationException;
 
@@ -26,7 +22,6 @@ class DoNew extends Command<Calculator> {
   
   @Override
   protected final void execute() throws FileOpenFailedException{
-    // FIXME implement command
     try{
     if(_receiver.getSpreadsheet() != null &&  !_receiver.getSpreadsheet().isSaved()){
       boolean booleanAnswer = Form.confirm(Message.saveBeforeExit());

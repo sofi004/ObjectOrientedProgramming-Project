@@ -4,13 +4,11 @@ import pt.tecnico.uilib.Dialog;
 import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.exception.ImportFileException;
 import xxl.core.exception.InvalidFunctionException;
-import java.io.IOException;
 
 /**
  * Class that represents the spreadsheet's textual interface.
  */
 public class App {
-
   public static void main(String[] args) throws InvalidFunctionException, InvalidCellRangeException{
     try (var ui = Dialog.UI) {
       var receiver = new xxl.core.Calculator();
@@ -23,7 +21,6 @@ public class App {
           e.printStackTrace();
         }
       }
-      
       (new xxl.app.main.Menu(receiver)).open();
     }
   }
