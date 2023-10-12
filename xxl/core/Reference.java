@@ -1,5 +1,7 @@
 package xxl.core;
 
+import xxl.app.exception.InvalidCellRangeException;
+
 public class Reference extends Content{
     private int _row;
     private int _column;
@@ -16,6 +18,6 @@ public class Reference extends Content{
     }
 
     Literal value(){
-        return _spreadsheet.searchCell(_row, _column).value();
+        return _spreadsheet.searchCell(_row, _column).value();   
     }
 }

@@ -29,10 +29,15 @@ public class Spreadsheet implements Serializable {
     _changed = false;
     _listCells = new Cell[row][column];
     createListCell();
+    _named = false;
   }
 
+  public boolean isNamed(){
+    return _named;
+  }
   public void setName(String name){
     _name = name;
+    _named = true;
   }
 
   public int getHeight(){
@@ -59,7 +64,6 @@ public class Spreadsheet implements Serializable {
   public Range buildRange(String rangeDescription) throws InvalidCellRangeException/* temos de meter excecoes*/{
     String[] rangeCoordinates;
     int firstRow, firstColumn, lastRow, lastColumn;
-    
     if (rangeDescription.indexOf(':') != -1) {
       rangeCoordinates = rangeDescription.split("[:;]");
       firstRow = Integer.parseInt(rangeCoordinates[0]);
@@ -71,14 +75,17 @@ public class Spreadsheet implements Serializable {
       firstRow = lastRow = Integer.parseInt(rangeCoordinates[0]);
       firstColumn = lastColumn = Integer.parseInt(rangeCoordinates[1]);
     }
-
+    if(firstRow > lastRow || firstColumn > lastColumn || lastRow > _height || lastColumn > _width){
+      throw new InvalidCellRangeException(rangeDescription);
+    }
     // check if coordinates are valid
     // if yes
+    
     return new Range(firstRow, firstColumn, lastRow, lastColumn, this);
   }
 
-  public void insert(int row, int column, Content content) throws UnrecognizedEntryException{
-    searchCell(row, column).insertContent(content);
+  public void insert(int row, int column, Content content){
+      searchCell(row, column).insertContent(content);
   }
 
   public Cell searchCell(int row, int column){

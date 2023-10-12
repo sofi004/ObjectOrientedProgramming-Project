@@ -72,7 +72,7 @@ public class Calculator{
     
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(filename))){
       outstream.writeObject(_spreadsheet);
-      _filename = filename;
+      _spreadsheet.setName(filename);
 
     
     }

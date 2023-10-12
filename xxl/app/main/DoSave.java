@@ -15,17 +15,21 @@ class DoSave extends Command<Calculator> {
 
   DoSave(Calculator receiver) {
     super(Label.SAVE, receiver, xxl -> xxl.getSpreadsheet() != null);
-    if (_receiver.getFile() == null)
-      addStringField("filename", Message.saveAs());
+    if (_receiver.getSpreadsheet().isNamed() == false)
+      addStringField("filename", Message.newSaveAs());
   }
   
   @Override
   protected final void execute() throws FileOpenFailedException {
     // FIXME implement command and create a local Form
     try{
-      if (_receiver.getFile() == null){
+      if (_receiver.getSpreadsheet().isNamed() == false){
         String nameSaveAs = stringField("filename");
         _receiver.saveAs(nameSaveAs);
+        _receiver.getSpreadsheet().setName(nameSaveAs);
+      }
+      else{
+        _receiver.save();
       }
     }
     catch(IOException | MissingFileAssociationException e){      
