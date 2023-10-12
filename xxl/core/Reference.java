@@ -14,7 +14,10 @@ public class Reference extends Content{
     }
 
     public String toString(){
-        return String.valueOf(_row)+";"+String.valueOf(_column);
+       // if(_spreadsheet.searchCell(_row, _column).toString() == "'")
+            return "#VALUE" + "=" + String.valueOf(_row)+";"+String.valueOf(_column);
+ //      else
+   //         return  _spreadsheet.searchCell(_row, _column).value() + "=" + String.valueOf(_row)+";"+String.valueOf(_column);
     }
 
     Literal value(){
