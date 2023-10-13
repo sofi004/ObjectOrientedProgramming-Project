@@ -8,7 +8,13 @@ public class Div extends BinaryFunction {
 
     @Override
     protected Literal compute(){
-        return new Number(_arg0.value().asInt() / _arg1.value().asInt());
+
+        try{
+            return new Number(_arg0.value().asInt() / _arg1.value().asInt());
+
+        }catch(ArithmeticException e){
+            return new Null().value();
+        }
     }
 
 }

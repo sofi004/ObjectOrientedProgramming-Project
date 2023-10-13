@@ -7,6 +7,7 @@ import xxl.app.exception.FileOpenFailedException;
 import xxl.core.Calculator;
 import xxl.core.Spreadsheet;
 import xxl.core.exception.MissingFileAssociationException;
+import xxl.core.exception.UnrecognizedEntryException;
 
 
 /**
@@ -21,7 +22,7 @@ class DoNew extends Command<Calculator> {
   }
   
   @Override
-  protected final void execute() throws FileOpenFailedException{
+  protected final void execute() throws FileOpenFailedException/*  UnrecognizedEntryException*/{
     try{
     if(_receiver.getSpreadsheet() != null &&  !_receiver.getSpreadsheet().isSaved()){
       boolean booleanAnswer = Form.confirm(Message.saveBeforeExit());
@@ -39,6 +40,8 @@ class DoNew extends Command<Calculator> {
     }
     Integer numberl = integerField("numberl");
     Integer numberc = integerField("numberc");
+//    if (numberl <= 0 || numberc <= 0)
+//      throw new UnrecognizedEntryException("Dimensões inválidas para a folha");
     _receiver.addSpreadsheet(new Spreadsheet(numberl, numberc)); 
 
   }
