@@ -16,15 +16,24 @@ import xxl.core.exception.UnrecognizedEntryException;
 /**
 * Class representing a spreadsheet application.
 */
+
 public class Calculator{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
-  
-  /**
-   * Return the current spreadsheet.
-   *
-   * @returns the current spreadsheet of this application. This reference can be null.
-   */
+
+
+/**
+ * Creates a new spreadsheet with the specified dimensions and sets it as the current spreadsheet.
+ *
+ * @param numberl The number of rows in the spreadsheet. Must be greater than 0.
+ * @param numberc The number of columns in the spreadsheet. Must be greater than 0.
+ *
+ * @throws UnrecognizedEntryException If either the number of rows (numberl) or the number of columns (numberc)
+ *                                  is less than or equal to 0, this method throws an UnrecognizedEntryException with
+ *                                  the message "Dimensões inválidas para a folha", indicating that the provided
+ *                                  dimensions are invalid for a spreadsheet.
+ */
+ 
   public void addSpreadsheet(int numberl, int numberc) throws UnrecognizedEntryException{
     if (numberl <= 0 || numberc <= 0) {
       throw new UnrecognizedEntryException("Dimensões inválidas para a folha");
@@ -33,6 +42,12 @@ public class Calculator{
     _spreadsheet = spreadsheet;
   }
 
+    
+  /**
+   * Return the current spreadsheet.
+   *
+   * @returns the current spreadsheet of this application. This reference can be null.
+   */
   public final Spreadsheet getSpreadsheet(){
     return _spreadsheet;
   }
@@ -98,7 +113,7 @@ public class Calculator{
     try {
       Parser parse = new Parser(_spreadsheet);
       _spreadsheet = parse.parseFile(filename);
-    } catch (IOException | UnrecognizedEntryException e) {
+    } catch (IOException | UnrecognizedEntryException | InvalidFunctionException e) {
       throw new ImportFileException(filename, e);
     }
   } 
