@@ -46,7 +46,6 @@ public class Calculator{
    * @throws IOException if there is some error while serializing the state of the network to disk.
    */
   public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
-    // FIXME implement serialization method
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(_spreadsheet.getFileName()))){
       outstream.writeObject(_spreadsheet);
       _spreadsheet.setSaved(true);
