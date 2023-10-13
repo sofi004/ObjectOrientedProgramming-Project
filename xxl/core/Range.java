@@ -1,8 +1,9 @@
 package xxl.core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Range {
+public class Range implements Serializable{
 
     private int _beginRow;
     private int _beginColumn;

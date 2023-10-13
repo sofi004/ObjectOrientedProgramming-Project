@@ -16,24 +16,23 @@ class DoOpen extends Command<Calculator> {
 
   DoOpen(Calculator receiver) {
     super(Label.OPEN, receiver);
-    addStringField("filename", Message.openFile());
   }
   
   @Override
   protected final void execute() throws CommandException, FileOpenFailedException {
-    try{
-      if(_receiver.getSpreadsheet() != null &&  !_receiver.getSpreadsheet().isSaved()){
-        boolean booleanAnswer = Form.confirm(Message.saveBeforeExit());
-        if(booleanAnswer){
-          if( _receiver.getSpreadsheet().isNamed())
-            _receiver.save();
-          else{
-            String fileName = stringField("FileName");
-            _receiver.saveAs(fileName);
-          }
+    if(_receiver.getSpreadsheet() != null &&  !_receiver.getSpreadsheet().isSaved()){
+      boolean booleanAnswer = Form.confirm(Message.saveBeforeExit());
+      if(booleanAnswer){
+        DoSave cmd = new DoSave(_receiver);
+        try{
+          cmd.performCommand();
+        }catch(CommandException e){
+          throw new FileOpenFailedException(e);
         }
       }
-      String nameSaveAs = stringField("filename");
+    }
+    try{
+      String nameSaveAs = Form.requestString(Message.openFile());
       _receiver.load(nameSaveAs);
     }
     catch(IOException | MissingFileAssociationException | UnavailableFileException e){      

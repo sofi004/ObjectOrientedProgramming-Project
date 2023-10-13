@@ -29,6 +29,9 @@ public class Spreadsheet implements Serializable {
     _named = false;
   }
 
+    public String getFileName(){
+      return _name;
+    }
 
   public boolean isNamed(){
     return _named;

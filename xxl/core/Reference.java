@@ -1,6 +1,8 @@
 package xxl.core;
 
-public class Reference extends Content{
+import java.io.Serializable;
+
+public class Reference extends Content implements Serializable{
     private int _row;
     private int _column;
     private Spreadsheet _spreadsheet;

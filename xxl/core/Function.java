@@ -1,6 +1,8 @@
 package xxl.core;
 
-public abstract class Function extends Content{
+import java.io.Serializable;
+
+public abstract class Function extends Content implements Serializable{
 
     private String _name;
 

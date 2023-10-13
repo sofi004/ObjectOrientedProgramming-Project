@@ -19,18 +19,21 @@ import xxl.core.exception.UnrecognizedEntryException;
 public class Calculator{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
-  private String _filename;
-  
   
   /**
    * Return the current spreadsheet.
    *
    * @returns the current spreadsheet of this application. This reference can be null.
    */
-  public void addSpreadsheet(Spreadsheet spreadsheet){
+  public void addSpreadsheet(int numberl, int numberc) throws UnrecognizedEntryException{
+    if (numberl <= 0 || numberc <= 0) {
+      throw new UnrecognizedEntryException("Dimensões inválidas para a folha");
+    }
+    Spreadsheet spreadsheet = new Spreadsheet(numberl, numberc);
     _spreadsheet = spreadsheet;
   }
-  public final Spreadsheet getSpreadsheet() {
+
+  public final Spreadsheet getSpreadsheet(){
     return _spreadsheet;
   }
 
@@ -44,22 +47,13 @@ public class Calculator{
    */
   public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
     // FIXME implement serialization method
-    try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(_filename))){
+    try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(_spreadsheet.getFileName()))){
       outstream.writeObject(_spreadsheet);
       _spreadsheet.setSaved(true);
 
     }
   }
 
-
-  /**
-  * Get the name of the file associated with the current spreadsheet.
-  *
-  * @return the name of the file associated with the current spreadsheet, or null if there is no associated file.
-  */
-  public String getFile(){
-    return _filename;
-  }
   
 
   /**
