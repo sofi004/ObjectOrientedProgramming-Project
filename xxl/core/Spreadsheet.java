@@ -86,7 +86,9 @@ public class Spreadsheet implements Serializable {
       firstRow = lastRow = Integer.parseInt(rangeCoordinates[0]);
       firstColumn = lastColumn = Integer.parseInt(rangeCoordinates[1]);
     }
-    if(firstRow > lastRow || firstColumn > lastColumn || lastRow > _height || lastColumn > _width){
+    if(firstRow > lastRow || firstColumn > lastColumn || lastRow > _height || lastColumn > _width
+    || ((lastRow != firstRow) && (lastColumn != firstColumn))){
+
       throw new InvalidCellRangeException(rangeDescription);
     }
     return new Range(firstRow, firstColumn, lastRow, lastColumn, this);
