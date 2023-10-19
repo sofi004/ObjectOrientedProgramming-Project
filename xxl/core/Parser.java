@@ -12,11 +12,11 @@ public class Parser {
   private Spreadsheet _spreadsheet;
   
 
-  Parser() {
+  public Parser() {
   }
 
 
-  Parser(Spreadsheet spreadsheet) {
+  public Parser(Spreadsheet spreadsheet) {
     _spreadsheet = spreadsheet;
   }
 

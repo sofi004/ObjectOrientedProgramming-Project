@@ -25,7 +25,7 @@ class DoShow extends Command<Spreadsheet> {
       ArrayList<Cell> listCells = range.getListCells();
       for(Cell c: listCells){
       _display.addLine(c.toString());
-    }
+      }
     }
     catch(ArrayIndexOutOfBoundsException e){      
       throw new InvalidCellRangeException(rangeDescription);

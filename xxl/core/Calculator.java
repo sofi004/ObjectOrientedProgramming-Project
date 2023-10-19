@@ -20,8 +20,7 @@ import xxl.core.exception.UnrecognizedEntryException;
 public class Calculator{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
-
-
+  
 /**
  * Creates a new spreadsheet with the specified dimensions and sets it as the current spreadsheet.
  *
