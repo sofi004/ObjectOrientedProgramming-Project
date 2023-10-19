@@ -2,6 +2,7 @@ package xxl.app.main;
 
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
+import pt.tecnico.uilib.menus.CommandException;
 import xxl.app.exception.FileOpenFailedException;
 import xxl.core.Calculator;
 import java.io.*;
@@ -17,7 +18,7 @@ class DoSave extends Command<Calculator> {
   }
   
   @Override
-  protected final void execute() throws FileOpenFailedException {
+  protected final void execute() throws CommandException {
     try{
       if (_receiver.getSpreadsheet().isNamed() == false){
         String nameSaveAs = Form.requestString(Message.newSaveAs());
@@ -28,8 +29,7 @@ class DoSave extends Command<Calculator> {
         _receiver.save();
       }
     }
-    catch(IOException | MissingFileAssociationException e){      
-      throw new FileOpenFailedException(e);
+    catch(IOException | MissingFileAssociationException e){  
     }
   }
 }
