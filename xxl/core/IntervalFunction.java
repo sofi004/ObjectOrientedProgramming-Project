@@ -1,7 +1,7 @@
 package xxl.core;
 
 public abstract class IntervalFunction extends Function{
-    private Range _range;
+    protected Range _range;
 
     public IntervalFunction(Range range, String name){
         super(name);
@@ -10,7 +10,7 @@ public abstract class IntervalFunction extends Function{
 
     @Override
     public String toString(){
-        String func = "=" + super.getName() + "(" + _range.getBeginRow() + ";" + 
+        String func = compute().toString() + "=" + super.getName() + "(" + _range.getBeginRow() + ";" + 
         _range.getBeginColumn() + ":" + _range.getEndRow() + ";" + _range.getEndColumn() + ")"; 
         return func;
     }
