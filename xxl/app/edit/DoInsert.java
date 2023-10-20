@@ -30,6 +30,7 @@ class DoInsert extends Command<Spreadsheet> {
     String contentDescription = Form.requestString(Message.contents());
     Range range = _receiver.buildRange(rangeDescription);
     ArrayList<Cell> listCells = range.getListCells();
+    _receiver.setSaved(false);
     for(Cell c: listCells){
       try {
         c.insertContent(parse.parseContent(contentDescription));
