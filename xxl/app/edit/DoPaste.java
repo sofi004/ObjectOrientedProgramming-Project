@@ -1,5 +1,6 @@
 package xxl.app.edit;
 
+import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import xxl.core.Spreadsheet;
@@ -12,11 +13,12 @@ class DoPaste extends Command<Spreadsheet> {
 
   DoPaste(Spreadsheet receiver) {
     super(Label.PASTE, receiver);
-    // FIXME add fields
   }
   
   @Override
   protected final void execute() throws CommandException {
-    // FIXME implement command
+    String rangeDescription = Form.requestString(Message.address());
+    
+    
   }
 }

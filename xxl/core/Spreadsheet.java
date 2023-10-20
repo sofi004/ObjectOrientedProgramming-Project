@@ -14,7 +14,7 @@ public class Spreadsheet implements Serializable {
   private int _height;
   private int _width;
   private boolean _saved;
-  private Range _cutBuffer;
+  private CutBuffer _cutBuffer;
   private Cell[][] _listCells;
   private String _name;
   private boolean _named;
@@ -104,6 +104,10 @@ public class Spreadsheet implements Serializable {
     return _listCells[row-1][column-1];
   }
   
+  public void setCutBuffer(CutBuffer cutBuffer){
+    _cutBuffer = cutBuffer;
+  }
+
 
   /**
    * Insert specified content in specified address.
