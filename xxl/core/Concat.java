@@ -16,7 +16,9 @@ public class Concat extends IntervalFunction {
             try{
             String[] content = c.getContent().asString().split("'", 2);
             n += content[content.length - 1];
-            }catch(ArithmeticException e){}
+            }catch(ArithmeticException e){
+                continue;
+            }
         }
         return new Character(n);
     }

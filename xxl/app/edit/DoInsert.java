@@ -28,15 +28,16 @@ class DoInsert extends Command<Spreadsheet> {
     Parser parse = new Parser(_receiver);
     String rangeDescription = Form.requestString(Message.address());
     String contentDescription = Form.requestString(Message.contents());
-    Range range = _receiver.buildRange(rangeDescription);
-    ArrayList<Cell> listCells = range.getListCells();
-    _receiver.setSaved(false);
-    for(Cell c: listCells){
-      try {
-        c.insertContent(parse.parseContent(contentDescription));
-      } catch (UnrecognizedEntryException| InvalidFunctionException| InvalidCellRangeException e){
-        
+    try{
+      Range range = _receiver.buildRange(rangeDescription);
+      ArrayList<Cell> listCells = range.getListCells();
+      _receiver.setSaved(false);
+      for(Cell c: listCells){
+          c.insertContent(parse.parseContent(contentDescription));
       }
+    } catch (UnrecognizedEntryException| InvalidFunctionException| InvalidCellRangeException e){
+      _display.addLine(e.getMessage());
+      _display.display();
     }
   }
 }
