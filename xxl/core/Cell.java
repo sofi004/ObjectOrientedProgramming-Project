@@ -8,14 +8,14 @@ public class Cell implements Serializable{
     private int _row;
     private Content _content;
 
-    Literal value(){
-        return _content.value();
-    }
-
     public Cell(int row, int column){
         _column = column;
         _row = row;
         _content = new Null();
+    }
+
+    Literal value(){
+        return _content.value();
     }
 
     public int getRow(){

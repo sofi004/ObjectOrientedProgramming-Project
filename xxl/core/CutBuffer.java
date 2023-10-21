@@ -7,4 +7,8 @@ public class CutBuffer {
     public CutBuffer(Range range){
         _listCells = range;
     }
+
+    public Range getListCells(){
+        return _listCells;
+    }
 }

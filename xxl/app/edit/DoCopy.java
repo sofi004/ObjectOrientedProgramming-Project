@@ -21,6 +21,7 @@ class DoCopy extends Command<Spreadsheet> {
   protected final void execute() throws CommandException {
       String rangeDescription = Form.requestString(Message.address());
       CutBuffer cutBuffer = new CutBuffer(_receiver.buildRange(rangeDescription));
+      _receiver.setCutBuffer(cutBuffer);
 
   }
 }

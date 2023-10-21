@@ -2,6 +2,7 @@ package xxl.core;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import xxl.app.exception.InvalidCellRangeException;
 
 /**
@@ -108,6 +109,32 @@ public class Spreadsheet implements Serializable {
     _cutBuffer = cutBuffer;
   }
 
+  public void paste(Range selectedCells){
+      ArrayList<Cell> targetCells = selectedCells.getCells();
+      ArrayList<Cell> cutBufferCells = _cutBuffer.getListCells().getListCells();
+    if (targetCells.size() == 1){
+      int r = targetCells.get(0).getRow();
+      int c = targetCells.get(0).getCollumn();
+      int r_iterator = 0;
+      int c_iterator = 0;
+      if(cutBufferCells.size() > 1){
+        r_iterator = cutBufferCells.get(1).getRow() - cutBufferCells.get(0).getRow();
+        c_iterator = cutBufferCells.get(1).getCollumn() - cutBufferCells.get(0).getCollumn();
+      }
+      for(Cell e: cutBufferCells){
+        searchCell(r, c).insertContent(e.getContent());
+        r += r_iterator;
+        c += c_iterator;
+      }  
+    }else{
+      for(Cell e: targetCells){
+        for(Cell t: cutBufferCells){
+          t.insertContent(e.getContent());;
+        }
+      }
+      }
+  }
+}
 
   /**
    * Insert specified content in specified address.
@@ -118,4 +145,4 @@ public class Spreadsheet implements Serializable {
    *        in the specified cell.
    */
 
-}
+
