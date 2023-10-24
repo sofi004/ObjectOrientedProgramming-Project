@@ -1,14 +1,16 @@
 package xxl.core;
 
+import java.util.ArrayList;
+
 public class CutBuffer {
 
-    private Range _listCells;
+    private ArrayList<Cell> _listCells;
 
-    public CutBuffer(Range range){
-        _listCells = range;
+    public CutBuffer(ArrayList<Cell> listcell){
+        _listCells = listcell;
     }
 
-    public Range getListCells(){
+    public ArrayList<Cell> getListCells(){
         return _listCells;
     }
 }

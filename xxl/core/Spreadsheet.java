@@ -63,6 +63,9 @@ public class Spreadsheet implements Serializable {
     _saved = val;
   }
 
+  public CutBuffer getCutBuffer(){
+    return _cutBuffer;
+  }
 
   public void createListCell(){
     for(int i = 0; i < _height; i++){
@@ -111,7 +114,7 @@ public class Spreadsheet implements Serializable {
 
   public void paste(Range selectedCells){
       ArrayList<Cell> targetCells = selectedCells.getCells();
-      ArrayList<Cell> cutBufferCells = _cutBuffer.getListCells().getListCells();
+      ArrayList<Cell> cutBufferCells = _cutBuffer.getListCells();
     if (targetCells.size() == 1){
       int r = targetCells.get(0).getRow();
       int c = targetCells.get(0).getCollumn();
