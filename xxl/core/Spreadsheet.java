@@ -138,8 +138,9 @@ public class Spreadsheet implements Serializable {
     }
   }
 
-  public void copy(String rangeDescription) throws InvalidCellRangeException{
-    ArrayList<Cell> copiedCells = buildRange(rangeDescription).getListCells();
+
+
+  public void copy(ArrayList<Cell> copiedCells) throws InvalidCellRangeException{
     ArrayList<Cell> listCells = new ArrayList<Cell>();
     int r = 1;
     int c = 1;
@@ -158,6 +159,13 @@ public class Spreadsheet implements Serializable {
     }
     CutBuffer cutBuffer = new CutBuffer(listCells);
     _cutBuffer = cutBuffer;
+  }
+
+  public void delete(ArrayList<Cell> listCells){
+    for(Cell c: listCells){
+      Null n = new Null();
+      c.insertContent(n);
+    }
   }
 }
 
