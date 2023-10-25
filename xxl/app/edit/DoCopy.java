@@ -24,12 +24,12 @@ class DoCopy extends Command<Spreadsheet> {
   }
   
   @Override
-  protected final void execute() throws CommandException, InvalidCellRangeException {
+  protected final void execute() throws CommandException {
     String rangeDescription = Form.requestString(Message.address());
     try{
       ArrayList<Cell> copiedCells = _receiver.buildRange(rangeDescription).getListCells();
       _receiver.copy(copiedCells);
-    }catch(CommandException e){
+    }catch(InvalidCellRangeException e){
       _display.addLine(e.getMessage());
     }
     _display.display();
