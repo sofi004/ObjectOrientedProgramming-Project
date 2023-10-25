@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.Cell;
-import xxl.core.Null;
 import xxl.core.Spreadsheet;
 // FIXME import classes
 
