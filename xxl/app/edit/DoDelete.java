@@ -7,7 +7,6 @@ import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.Cell;
-import xxl.core.Null;
 import xxl.core.Range;
 import xxl.core.Spreadsheet;
 

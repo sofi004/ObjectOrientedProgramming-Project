@@ -3,8 +3,6 @@ package xxl.core;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import pt.tecnico.uilib.Display;
 import xxl.app.exception.InvalidCellRangeException;
 
 /**

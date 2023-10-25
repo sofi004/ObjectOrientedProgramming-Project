@@ -3,7 +3,6 @@ package xxl.app.main;
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-import xxl.app.exception.FileOpenFailedException;
 import xxl.core.Calculator;
 import java.io.*;
 import xxl.core.exception.MissingFileAssociationException;

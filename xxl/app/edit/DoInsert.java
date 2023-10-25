@@ -1,8 +1,6 @@
 package xxl.app.edit;
 
-import java.io.IOException;
 import java.util.ArrayList;
-
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
