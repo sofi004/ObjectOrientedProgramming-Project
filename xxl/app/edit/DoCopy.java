@@ -30,6 +30,7 @@ class DoCopy extends Command<Spreadsheet> {
       _receiver.copy(copiedCells);
     }catch(InvalidCellRangeException e){
       _display.addLine(e.getMessage());
+      throw new InvalidCellRangeException(rangeDescription);
     }
     _display.display();
   }
