@@ -137,6 +137,28 @@ public class Spreadsheet implements Serializable {
       }
     }
   }
+
+  public void copy(String rangeDescription) throws InvalidCellRangeException{
+    ArrayList<Cell> copiedCells = buildRange(rangeDescription).getListCells();
+    ArrayList<Cell> listCells = new ArrayList<Cell>();
+    int r = 1;
+    int c = 1;
+    int r_iterator = 0;
+    int c_iterator = 0;
+    if(copiedCells.size() > 1){
+      r_iterator = copiedCells.get(1).getRow() - copiedCells.get(0).getRow();
+      c_iterator = copiedCells.get(1).getCollumn() - copiedCells.get(0).getCollumn();
+    }
+    for(int k = 0; k < copiedCells.size(); k++){
+      Cell cell = new Cell(r,c);
+      cell.insertContent(copiedCells.get(k).getContent());
+      listCells.add(cell);
+      r += r_iterator;
+      c += c_iterator;
+    }
+    CutBuffer cutBuffer = new CutBuffer(listCells);
+    _cutBuffer = cutBuffer;
+  }
 }
 
 
