@@ -1,5 +1,6 @@
 package xxl.app.edit;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import pt.tecnico.uilib.forms.Form;
@@ -7,9 +8,8 @@ import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.Cell;
-import xxl.core.CutBuffer;
 import xxl.core.Spreadsheet;
-import xxl.core.Content;
+
 
 // FIXME import classes
 
@@ -24,13 +24,14 @@ class DoCopy extends Command<Spreadsheet> {
   }
   
   @Override
-  protected final void execute() throws CommandException {
+  protected final void execute() throws CommandException, InvalidCellRangeException {
     String rangeDescription = Form.requestString(Message.address());
     try{
       ArrayList<Cell> copiedCells = _receiver.buildRange(rangeDescription).getListCells();
       _receiver.copy(copiedCells);
-    }catch(InvalidCellRangeException e){
+    }catch(CommandException e){
       _display.addLine(e.getMessage());
     }
+    _display.display();
   }
 }
