@@ -1,5 +1,7 @@
 package xxl.core;
 
+import java.util.ArrayList;
+
 public class Coaleste extends IntervalFunction {
 
     public Coaleste(Range range, String name){
@@ -8,7 +10,15 @@ public class Coaleste extends IntervalFunction {
 
     @Override
     protected Literal compute(){
-        return new Number(0);
+        ArrayList<Cell> listCells = _range.getListCells();
+        for(Cell c: listCells){
+            try{
+                String content = c.getContent().asString();
+                return new Character(content);
+            }catch(ArithmeticException e){
+                continue;
+            }
+        }
+        return new Character("'");
     }
-
 }
