@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import xxl.app.exception.InvalidCellRangeException;
 
-/**
- * Class representing a spreadsheet.
- */
+/*
+* Class representing a spreadsheet.
+*/
 public class Spreadsheet implements Serializable {
   @Serial
   private static final long serialVersionUID = 202308312359L;
@@ -19,7 +19,6 @@ public class Spreadsheet implements Serializable {
   private Cell[][] _listCells;
   private String _name;
   private boolean _named;
-
 
   public Spreadsheet(int row, int column){
     _height = row;
@@ -38,7 +37,6 @@ public class Spreadsheet implements Serializable {
     return _named;
   }
 
-
   public void setName(String name){
     _name = name;
     _named = true;
@@ -48,16 +46,13 @@ public class Spreadsheet implements Serializable {
     return _height;
   }
 
-
   public int getWidth(){
     return _width;
   }
 
-
   public boolean isSaved(){
     return _saved;
   }
-
 
   public void setSaved(boolean val){
     _saved = val;
@@ -74,7 +69,6 @@ public class Spreadsheet implements Serializable {
       }
     }
   }
-
 
   public Range buildRange(String rangeDescription) throws InvalidCellRangeException{
     String[] rangeCoordinates;
@@ -98,11 +92,9 @@ public class Spreadsheet implements Serializable {
     return new Range(firstRow, firstColumn, lastRow, lastColumn, this);
   }
 
-
   public void insert(int row, int column, Content content){
       searchCell(row, column).insertContent(content);
   }
-
 
   public Cell searchCell(int row, int column){
     return _listCells[row-1][column-1];
@@ -113,30 +105,35 @@ public class Spreadsheet implements Serializable {
   }
 
   public void paste(Range selectedCells){
-      ArrayList<Cell> targetCells = selectedCells.getListCells();
-      ArrayList<Cell> cutBufferCells = _cutBuffer.getListCells();
+    ArrayList<Cell> targetCells = selectedCells.getListCells();
+    ArrayList<Cell> cutBufferCells = _cutBuffer.getListCells();
+    int r = targetCells.get(0).getRow();
+    int c = targetCells.get(0).getCollumn();
+    int r_iterator = 0;
+    int c_iterator = 0;
+    if(cutBufferCells.size() > 1){
+      r_iterator = cutBufferCells.get(1).getRow() - cutBufferCells.get(0).getRow();
+      c_iterator = cutBufferCells.get(1).getCollumn() - cutBufferCells.get(0).getCollumn();
+    }
     if (targetCells.size() == 1){
-      int r = targetCells.get(0).getRow();
-      int c = targetCells.get(0).getCollumn();
-      int r_iterator = 0;
-      int c_iterator = 0;
-      if(cutBufferCells.size() > 1){
-        r_iterator = cutBufferCells.get(1).getRow() - cutBufferCells.get(0).getRow();
-        c_iterator = cutBufferCells.get(1).getCollumn() - cutBufferCells.get(0).getCollumn();
-      }
       for(Cell e: cutBufferCells){
-        searchCell(r, c).insertContent(e.getContent());
-        r += r_iterator;
-        c += c_iterator;
+        if(r <= _height && c <= _width){
+          searchCell(r, c).insertContent(e.getContent());
+          r += r_iterator;
+          c += c_iterator;
+        }
       }  
-    }else if(targetCells.size() > 1){
+    }
+    else if(targetCells.size() > 1){
       for(int i = 0; i < targetCells.size(); i++){
+        if(r <= _height && c <= _width){
           targetCells.get(i).insertContent(cutBufferCells.get(i).getContent());
+          r += r_iterator;
+          c += c_iterator;
+        }
       }
     }
   }
-
-
 
   public void copy(ArrayList<Cell> copiedCells) throws InvalidCellRangeException{
     ArrayList<Cell> listCells = new ArrayList<Cell>();
@@ -167,7 +164,6 @@ public class Spreadsheet implements Serializable {
   }
 }
 
-
   /**
    * Insert specified content in specified address.
    *
@@ -176,5 +172,3 @@ public class Spreadsheet implements Serializable {
    * @param contentSpecification the specification in a string format of the content to put
    *        in the specified cell.
    */
-
-

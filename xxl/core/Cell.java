@@ -14,7 +14,7 @@ public class Cell implements Serializable{
         _content = new Null();
     }
 
-    Literal value(){
+    public Literal value(){
         return _content.value();
     }
 

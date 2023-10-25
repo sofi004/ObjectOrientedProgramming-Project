@@ -25,7 +25,7 @@ class DoInsert extends Command<Spreadsheet> {
   protected final void execute() throws CommandException {
     Parser parse = new Parser(_receiver);
     String rangeDescription = Form.requestString(Message.address());
-    String contentDescription = Form.requestString(Message.contents());
+    String contentDescription = Form.requestString(Message.contents()); 
     try{
       Range range = _receiver.buildRange(rangeDescription);
       ArrayList<Cell> listCells = range.getListCells();
