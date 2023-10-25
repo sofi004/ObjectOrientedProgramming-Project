@@ -143,7 +143,7 @@ public class Parser {
     Range range = _spreadsheet.buildRange(rangeDescription);
     return switch (functionName) {
       case "CONCAT" -> new Concat(range, functionName);
-      case "COALESTE" -> new Coaleste(range, functionName);
+      case "COALESCE" -> new Coalesce(range, functionName);
       case "PRODUCT" -> new Product(range, functionName);
       case "AVERAGE" -> new Average(range, functionName);
       default -> throw new InvalidFunctionException(functionName);
