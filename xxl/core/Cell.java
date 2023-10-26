@@ -1,17 +1,20 @@
 package xxl.core;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Cell implements Serializable{
 
     private int _column;
     private int _row;
     private Content _content;
+    private ArrayList<Observer> _observers;
 
     public Cell(int row, int column){
         _column = column;
         _row = row;
         _content = new Null();
+        _observers = new ArrayList<Observer>();
     }
 
     public Literal value(){
@@ -28,6 +31,7 @@ public class Cell implements Serializable{
 
     public void insertContent(Content content){
         _content = content;
+        recalcula();
     }
     
     public String toString(){
@@ -36,5 +40,15 @@ public class Cell implements Serializable{
 
     public Content getContent(){
         return _content;
+    }
+
+    public void addObserver(Observer o){
+        _observers.add(o);
+    }
+
+    public void recalcula(){
+        for(Observer o: _observers){
+            o.update();
+        }
     }
 }

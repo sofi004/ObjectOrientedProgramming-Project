@@ -6,6 +6,7 @@ public class Coalesce extends IntervalFunction {
 
     public Coalesce(Range range, String name){
         super(range, name);
+        update();
     }
 
     @Override

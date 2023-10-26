@@ -6,6 +6,7 @@ public class Average extends IntervalFunction {
 
     public Average(Range range, String name){
         super(range, name);
+        update();
     }
 
     @Override

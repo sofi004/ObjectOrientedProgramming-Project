@@ -1,5 +1,9 @@
 package xxl.core;
 
+import java.io.IOException;
+
+import xxl.app.exception.InvalidCellRangeException;
+
 public abstract class BinaryFunction extends Function{
 
     protected Content _arg0;
@@ -26,5 +30,18 @@ public abstract class BinaryFunction extends Function{
 
     public Content getSecondArg(){
         return _arg1;
+    }
+
+    public void addRecalculate(){
+        try{
+        _arg0.getCell().addObserver(this);
+        }
+        catch(IOException e){      
+        }
+        try{
+        _arg1.getCell().addObserver(this);
+        }
+        catch(IOException e){      
+        }
     }
 }

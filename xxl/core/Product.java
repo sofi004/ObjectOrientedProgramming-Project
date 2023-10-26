@@ -6,6 +6,7 @@ public class Product extends IntervalFunction {
 
     public Product(Range range, String name){
         super(range, name);
+        update();
     }
 
     @Override

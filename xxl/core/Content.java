@@ -12,6 +12,10 @@ public abstract class Content {
         throw new IOException();    
     }
     
+    public  Cell getCell() throws IOException{
+        throw new IOException();    
+    }
+
     public int asInt(){
         return this.value().asInt();    
     }
