@@ -2,9 +2,11 @@ package xxl.core;
 
 import java.io.Serializable;
 
-public abstract class Function extends Content implements Serializable{
+public abstract class Function extends Content implements Serializable, Observer{
 
     private String _name;
+
+    private Literal _value;
 
     protected abstract Literal compute();
 
@@ -18,7 +20,10 @@ public abstract class Function extends Content implements Serializable{
 
     @Override
     public Literal value(){
-        return compute();
+        return _value;
     }
     
+    public void update(){
+        _value = compute();
+    }
 }

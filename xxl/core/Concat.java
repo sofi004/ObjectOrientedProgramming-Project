@@ -6,6 +6,7 @@ public class Concat extends IntervalFunction {
 
     public Concat(Range range, String name){
         super(range, name);
+        update();
     }
 
     @Override

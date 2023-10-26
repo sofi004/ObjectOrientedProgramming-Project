@@ -4,6 +4,7 @@ public class Sub extends BinaryFunction {
 
     public Sub(Content arg0, Content arg1, String name){
         super(arg0, arg1, name);
+        update();
     }
     
     @Override

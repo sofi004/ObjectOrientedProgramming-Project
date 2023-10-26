@@ -4,6 +4,7 @@ public class Div extends BinaryFunction {
 
     public Div(Content arg0, Content arg1, String name){
         super(arg0, arg1, name);
+        update();
     }
 
     @Override
