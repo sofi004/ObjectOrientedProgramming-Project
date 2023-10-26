@@ -17,4 +17,8 @@ public abstract class Literal extends Content{
         return this;
     }
 
+    public boolean visit(Literal literal){
+        return true;
+    }
+
 }

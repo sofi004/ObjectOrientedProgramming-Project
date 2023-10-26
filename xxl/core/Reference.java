@@ -36,4 +36,8 @@ public class Reference extends Content implements Serializable, Observer{
         _value = _cell.value();
     }
 
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
+
 }

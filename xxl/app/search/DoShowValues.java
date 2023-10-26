@@ -3,7 +3,6 @@ package xxl.app.search;
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import xxl.core.Spreadsheet;
-import xxl.core.MatrixCellRepresentation;
 
 /**
  * Command for searching content values.

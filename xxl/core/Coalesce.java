@@ -23,4 +23,8 @@ public class Coalesce extends IntervalFunction {
         }
         return new Character(n);
     }
+
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
 }

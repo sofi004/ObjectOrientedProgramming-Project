@@ -51,4 +51,8 @@ public class Cell implements Serializable{
             o.update();
         }
     }
+
+    public boolean visit(Cell cell){
+        return true;
+    }
 }

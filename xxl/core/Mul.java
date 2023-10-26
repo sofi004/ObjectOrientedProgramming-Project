@@ -16,4 +16,8 @@ public class Mul extends BinaryFunction {
             return new Null().value();
         }
     }
+
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
 }

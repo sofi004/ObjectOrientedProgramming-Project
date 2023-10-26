@@ -2,15 +2,11 @@ package xxl.core;
 
 import java.io.IOException;
 
-public abstract class Content {
+public abstract class Content{
     
     public abstract String toString();
 
     abstract Literal value();
-
-    public  String getName() throws IOException{
-        throw new IOException();    
-    }
     
     public  Cell getCell() throws IOException{
         throw new IOException();    
@@ -24,6 +20,12 @@ public abstract class Content {
         return this.value().asString();
     }
 
-    
+    public boolean accept(Visitor v){
+        return v.visit(this);
+    }
+
+    public String getName(){
+        return "ADD";
+    }
     
 }

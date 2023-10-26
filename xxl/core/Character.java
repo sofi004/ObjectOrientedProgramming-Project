@@ -17,4 +17,8 @@ public class Character extends Literal implements Serializable{
     public String asString(){
         return _value;
     }
+
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
 }

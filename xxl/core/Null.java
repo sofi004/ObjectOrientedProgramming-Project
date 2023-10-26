@@ -16,4 +16,8 @@ public class Null extends Literal implements Serializable{
         return new Character("#VALUE");
     }
 
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
+
 }

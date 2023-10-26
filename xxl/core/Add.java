@@ -1,6 +1,6 @@
 package xxl.core;
 
-public class Add extends BinaryFunction {
+public class Add extends BinaryFunction{
 
     public Add(Content arg0, Content arg1, String name){
         super(arg0, arg1, name);
@@ -15,5 +15,9 @@ public class Add extends BinaryFunction {
     }   catch(ArithmeticException e){
             return new Null().value();
         }
+    }
+
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
     }
 }

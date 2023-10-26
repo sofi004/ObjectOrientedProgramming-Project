@@ -24,4 +24,8 @@ public class Average extends IntervalFunction {
         }
     }
 
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
+
 }

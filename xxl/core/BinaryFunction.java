@@ -2,7 +2,7 @@ package xxl.core;
 
 import java.io.IOException;
 
-import xxl.app.exception.InvalidCellRangeException;
+
 
 public abstract class BinaryFunction extends Function{
 

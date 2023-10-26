@@ -20,4 +20,8 @@ public class Number extends Literal implements Serializable{
         return String.valueOf(_value);
     }
 
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
+
 }

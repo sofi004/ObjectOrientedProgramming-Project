@@ -22,4 +22,8 @@ public class Product extends IntervalFunction {
             return new Null().value();
         }
     }
+
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
 }

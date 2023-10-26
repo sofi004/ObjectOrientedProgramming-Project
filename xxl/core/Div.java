@@ -18,4 +18,8 @@ public class Div extends BinaryFunction {
         }
     }
 
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
+
 }

@@ -17,4 +17,8 @@ public class Sub extends BinaryFunction {
         }
     }
 
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
+
 }
