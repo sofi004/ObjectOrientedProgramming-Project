@@ -25,7 +25,7 @@ public class Range implements Serializable{
     ArrayList<Cell> getCells(){
         for(int i = _beginRow; i <= _endRow; i++){
             for(int k = _beginColumn; k <= _endColumn; k++){
-                _listCells.add(_spreadsheet.searchCell(i, k));
+                _listCells.add(_spreadsheet.getCells().searchCell(i, k));
                 }
             }
         return _listCells;
