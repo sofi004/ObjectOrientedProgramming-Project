@@ -6,7 +6,6 @@ import pt.tecnico.uilib.menus.Command;
 import xxl.core.Cell;
 import xxl.core.CutBuffer;
 import xxl.core.Spreadsheet;
-// FIXME import classes
 
 /**
  * Show cut buffer command.

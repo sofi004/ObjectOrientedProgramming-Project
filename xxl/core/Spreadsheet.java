@@ -16,6 +16,7 @@ public class Spreadsheet implements Serializable {
   private int _width;
   private boolean _saved;
   private CutBuffer _cutBuffer;
+  //private CellRepresentation _listCells;
   private Cell[][] _listCells;
   private String _name;
   private boolean _named;
@@ -27,13 +28,14 @@ public class Spreadsheet implements Serializable {
     _listCells = new Cell[row][column];
     createListCell();
     _named = false;
-    //ArrayList<Cell> bufferList = new ArrayList<Cell>();
-    //_cutBuffer = new CutBuffer(bufferList);
+    ArrayList<Cell> bufferList = new ArrayList<Cell>();
+    CutBuffer cutBuffer = new CutBuffer(bufferList);
+    _cutBuffer = cutBuffer;
   }
 
-    public String getFileName(){
-      return _name;
-    }
+  public String getFileName(){
+    return _name;
+  }
 
   public boolean isNamed(){
     return _named;
@@ -58,6 +60,10 @@ public class Spreadsheet implements Serializable {
 
   public void setSaved(boolean val){
     _saved = val;
+  }
+
+  public void setCutBuffer(CutBuffer cutBuffer){
+    _cutBuffer = cutBuffer;
   }
 
   public CutBuffer getCutBuffer(){
@@ -102,9 +108,7 @@ public class Spreadsheet implements Serializable {
     return _listCells[row-1][column-1];
   }
   
-  public void setCutBuffer(CutBuffer cutBuffer){
-    _cutBuffer = cutBuffer;
-  }
+
 
   public void paste(Range selectedCells){
     ArrayList<Cell> targetCells = selectedCells.getListCells();

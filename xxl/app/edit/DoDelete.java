@@ -17,7 +17,6 @@ class DoDelete extends Command<Spreadsheet> {
 
   DoDelete(Spreadsheet receiver) {
     super(Label.DELETE, receiver);
-    // FIXME add fields
   }
   
   @Override

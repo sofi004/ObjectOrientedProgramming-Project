@@ -61,7 +61,7 @@ public class Calculator{
    */
   public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(_spreadsheet.getFileName()))){
-      outstream.writeObject(_spreadsheet);
+      outstream.writeObject(_spreadsheet); 
       _spreadsheet.setSaved(true);
 
     }
@@ -80,9 +80,9 @@ public class Calculator{
    */
   public void saveAs(String filename) throws FileNotFoundException, MissingFileAssociationException, IOException {
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(filename))){
-      outstream.writeObject(_spreadsheet);
-      _spreadsheet.setName(filename);
       _spreadsheet.setSaved(true);
+      _spreadsheet.setName(filename);
+      outstream.writeObject(_spreadsheet);
     }
   }
 

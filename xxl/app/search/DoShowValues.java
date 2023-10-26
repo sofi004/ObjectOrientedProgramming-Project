@@ -1,11 +1,9 @@
 package xxl.app.search;
 
-import java.io.IOException;
-
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import xxl.core.Spreadsheet;
-// FIXME import classes
+
 
 /**
  * Command for searching content values.
@@ -14,7 +12,6 @@ class DoShowValues extends Command<Spreadsheet> {
 
   DoShowValues(Spreadsheet receiver) {
     super(Label.SEARCH_VALUES, receiver);
-    // FIXME add fields
   }
   
   @Override

@@ -10,8 +10,6 @@ import xxl.core.Cell;
 import xxl.core.Spreadsheet;
 
 
-// FIXME import classes
-
 /**
  * Copy command.
  */
@@ -19,7 +17,6 @@ class DoCopy extends Command<Spreadsheet> {
 
   DoCopy(Spreadsheet receiver) {
     super(Label.COPY, receiver);
-    // FIXME add fields
   }
   
   @Override

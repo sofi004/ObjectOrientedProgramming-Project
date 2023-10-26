@@ -7,6 +7,7 @@ import xxl.core.Calculator;
 import java.io.*;
 import xxl.core.exception.MissingFileAssociationException;
 
+
 /**
  * Save to file under current name (if unnamed, query for name).
  */
@@ -28,7 +29,7 @@ class DoSave extends Command<Calculator> {
         _receiver.save();
       }
     }
-    catch(IOException | MissingFileAssociationException e){  
+    catch(IOException | MissingFileAssociationException e){ 
     }
   }
 }

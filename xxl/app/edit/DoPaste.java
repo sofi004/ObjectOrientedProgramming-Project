@@ -6,7 +6,6 @@ import pt.tecnico.uilib.menus.CommandException;
 import xxl.core.Spreadsheet;
 import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.Range;
-// FIXME import classes
 
 /**
  * Paste command.

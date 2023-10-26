@@ -8,7 +8,6 @@ import pt.tecnico.uilib.menus.CommandException;
 import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.Cell;
 import xxl.core.Spreadsheet;
-// FIXME import classes
 
 /**
  * Cut command.
@@ -17,7 +16,6 @@ class DoCut extends Command<Spreadsheet> {
 
   DoCut(Spreadsheet receiver) {
     super(Label.CUT, receiver);
-    // FIXME add fields
   }
   
   @Override
