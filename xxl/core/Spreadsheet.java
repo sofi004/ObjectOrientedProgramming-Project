@@ -16,8 +16,7 @@ public class Spreadsheet implements Serializable {
   private int _width;
   private boolean _saved;
   private CutBuffer _cutBuffer;
-  //private CellRepresentation _listCells;
-  private Cell[][] _listCells;
+  private CellsRepresentation _CellsList;
   private String _name;
   private boolean _named;
 
@@ -25,9 +24,8 @@ public class Spreadsheet implements Serializable {
     _height = row;
     _width = column;
     _saved = false;
-    _listCells = new Cell[row][column];
-    createListCell();
     _named = false;
+    _CellsList = new MatrixCellRepresentation(row, column);
     ArrayList<Cell> bufferList = new ArrayList<Cell>();
     CutBuffer cutBuffer = new CutBuffer(bufferList);
     _cutBuffer = cutBuffer;
@@ -46,14 +44,6 @@ public class Spreadsheet implements Serializable {
     _named = true;
   }
 
-  public int getHeight(){
-    return _height;
-  }
-
-  public int getWidth(){
-    return _width;
-  }
-
   public boolean isSaved(){
     return _saved;
   }
@@ -70,12 +60,8 @@ public class Spreadsheet implements Serializable {
     return _cutBuffer;
   }
 
-  public void createListCell(){
-    for(int i = 0; i < _height; i++){
-      for(int j = 0; j < _width; j++){
-        _listCells[i][j] = new Cell(i + 1, j + 1);
-      }
-    }
+  public CellsRepresentation getCells(){
+    return _CellsList;
   }
 
   public Range buildRange(String rangeDescription) throws InvalidCellRangeException{
@@ -100,16 +86,6 @@ public class Spreadsheet implements Serializable {
     return new Range(firstRow, firstColumn, lastRow, lastColumn, this);
   }
 
-  public void insert(int row, int column, Content content){
-      searchCell(row, column).insertContent(content);
-  }
-
-  public Cell searchCell(int row, int column){
-    return _listCells[row-1][column-1];
-  }
-  
-
-
   public void paste(Range selectedCells){
     ArrayList<Cell> targetCells = selectedCells.getListCells();
     ArrayList<Cell> cutBufferCells = _cutBuffer.getListCells();
@@ -124,7 +100,7 @@ public class Spreadsheet implements Serializable {
     if (targetCells.size() == 1){
       for(Cell e: cutBufferCells){
         if(r <= _height && c <= _width){
-          searchCell(r, c).insertContent(e.getContent());
+          _CellsList.searchCell(r, c).insertContent(e.getContent());
           r += r_iterator;
           c += c_iterator;
         }
@@ -164,8 +140,8 @@ public class Spreadsheet implements Serializable {
 
   public void delete(ArrayList<Cell> listCells){
     for(Cell c: listCells){
-      Null n = new Null();
-      c.insertContent(n);
+        Null n = new Null();
+        c.insertContent(n);
     }
   }
 }
