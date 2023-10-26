@@ -26,8 +26,8 @@ class DoDelete extends Command<Spreadsheet> {
     try{
     Range range = _receiver.buildRange(rangeDescription);
     ArrayList<Cell> listCells = range.getListCells();
-    _receiver.setSaved(false);
     _receiver.delete(listCells);
+    _receiver.setSaved(false);
     }catch(InvalidCellRangeException e){
       _display.addLine(e.getMessage());
     }

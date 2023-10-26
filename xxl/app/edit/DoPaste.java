@@ -26,5 +26,6 @@ class DoPaste extends Command<Spreadsheet> {
       throw new InvalidCellRangeException(rangeDescription);
     }
     _receiver.paste(selectedCells);
+    _receiver.setSaved(false);
   }
 }

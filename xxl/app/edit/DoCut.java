@@ -27,6 +27,7 @@ class DoCut extends Command<Spreadsheet> {
       ArrayList<Cell> copiedCells = _receiver.buildRange(rangeDescription).getListCells();
       _receiver.copy(copiedCells);
       _receiver.delete(copiedCells);
+      _receiver.setSaved(false);
     }catch(CommandException e){
       _display.addLine(e.getMessage());
       throw new InvalidCellRangeException(rangeDescription);

@@ -25,7 +25,7 @@ class DoShowFunctions extends Command<Spreadsheet> {
     for(int i = 1; i <= r; i++){
       for(int k = 1; k <= c; k++){
         try{
-          if(_receiver.searchCell(i, k).getContent().getName().equals(functionDescription)){
+          if(_receiver.searchCell(i, k).getContent().getName().contains(functionDescription)){
             _display.addLine(_receiver.searchCell(i, k).toString());
           }
         }catch(IOException e){

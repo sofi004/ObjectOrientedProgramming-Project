@@ -27,6 +27,8 @@ public class Spreadsheet implements Serializable {
     _listCells = new Cell[row][column];
     createListCell();
     _named = false;
+    //ArrayList<Cell> bufferList = new ArrayList<Cell>();
+    //_cutBuffer = new CutBuffer(bufferList);
   }
 
     public String getFileName(){
