@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,7 +22,7 @@ import xxl.core.exception.UnrecognizedEntryException;
 public class Calculator{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
-  private ArrayList<User> _users;
+  private List<User> _users = new ArrayList<>();
   private User _activeUser;
   
 /**

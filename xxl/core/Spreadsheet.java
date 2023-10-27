@@ -3,6 +3,8 @@ package xxl.core;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import xxl.app.exception.InvalidCellRangeException;
 
 /*
@@ -19,7 +21,7 @@ public class Spreadsheet implements Serializable {
   private CellsRepresentation _CellsList;
   private String _name;
   private boolean _named;
-  private ArrayList<User> _users;
+  private List<User> _users = new ArrayList<User>();;
 
   public Spreadsheet(int row, int column){
     _height = row;
@@ -30,7 +32,7 @@ public class Spreadsheet implements Serializable {
     ArrayList<Cell> bufferList = new ArrayList<Cell>();
     CutBuffer cutBuffer = new CutBuffer(bufferList);
     _cutBuffer = cutBuffer;
-    _users = new ArrayList<User>();
+    
   }
 
   public String getFileName(){
