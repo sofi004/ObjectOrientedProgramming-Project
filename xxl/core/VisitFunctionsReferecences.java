@@ -61,6 +61,10 @@ public class VisitFunctionsReferecences implements Visitor {
         return true;
     }
 
+    public boolean visit(IntervalFunction intervalFunction){
+        return true;
+    }
+
     public boolean visit(Reference reference){
         return true;
     }

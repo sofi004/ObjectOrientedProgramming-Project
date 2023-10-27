@@ -1,17 +1,15 @@
 package xxl.app.edit;
 
-import java.util.ArrayList;
-
 import pt.tecnico.uilib.menus.Command;
 import xxl.core.Cell;
 import xxl.core.CutBuffer;
 import xxl.core.Spreadsheet;
+import java.util.List;
 
 /**
  * Show cut buffer command.
  */
 class DoShowCutBuffer extends Command<Spreadsheet> {
-
   DoShowCutBuffer(Spreadsheet receiver) {
     super(Label.SHOW_CUT_BUFFER, receiver);
   }
@@ -19,7 +17,7 @@ class DoShowCutBuffer extends Command<Spreadsheet> {
   @Override
   protected final void execute() {
     CutBuffer buffer = _receiver.getCutBuffer();
-    ArrayList<Cell> cutBufferCells = buffer.getListCells();
+    List<Cell> cutBufferCells = buffer.getListCells();
     for(Cell c: cutBufferCells){
       _display.addLine(c.toString());
     }

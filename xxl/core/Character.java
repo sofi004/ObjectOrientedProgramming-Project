@@ -18,6 +18,7 @@ public class Character extends Literal implements Serializable{
         return _value;
     }
 
+    @Override
     public boolean accept(Visitor visitor){
         return visitor.visit(this);
     }

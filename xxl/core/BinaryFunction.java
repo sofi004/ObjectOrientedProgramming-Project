@@ -1,8 +1,6 @@
 package xxl.core;
 
-
 public abstract class BinaryFunction extends Function{
-
     protected Content _arg0;
     protected Content _arg1;
 
@@ -19,7 +17,6 @@ public abstract class BinaryFunction extends Function{
         String func = compute().toString() + "=" + super.getName() + "(" + arg0[arg0.length - 1] + "," + arg1[arg1.length-1] + ")"; 
         return func;
     }
-
 
     public Content getFirstArg(){
         return _arg0;
@@ -39,10 +36,12 @@ public abstract class BinaryFunction extends Function{
         }
     }
 
+    @Override
     public boolean accept(Visitor visitor){
         return visitor.visit(this);
     }
 
+    @Override
     public void stopObserving(){
         Visitor visitor = new VisitFunctionsReferecences();
         if(_arg0.accept(visitor)){

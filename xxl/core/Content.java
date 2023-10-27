@@ -1,9 +1,7 @@
 package xxl.core;
 
 public abstract class Content implements Observer{
-    
     public abstract String toString();
-
     abstract Literal value();
 
     public int asInt(){

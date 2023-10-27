@@ -16,12 +16,18 @@ public abstract class IntervalFunction extends Function{
         return func;
     }
 
+    @Override
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
+
     public void addRecalculate(){
         for(Cell c: _range.getListCells()){
             c.addObserver(this);
         }
     }
 
+    @Override
     public void stopObserving(){
         for(Cell c: _range.getListCells()){
             c.getObservers().remove(this);

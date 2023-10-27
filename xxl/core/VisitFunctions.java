@@ -62,6 +62,10 @@ public class VisitFunctions implements Visitor{
         return true;
     }
 
+    public boolean visit(IntervalFunction intervalFunction){
+        return true;
+    }
+
     public boolean visit(Reference reference){
         return false;
     }

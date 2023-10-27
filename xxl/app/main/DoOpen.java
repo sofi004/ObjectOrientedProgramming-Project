@@ -13,7 +13,6 @@ import xxl.core.exception.UnavailableFileException;
  * Open existing file.
  */
 class DoOpen extends Command<Calculator> {
-
   DoOpen(Calculator receiver) {
     super(Label.OPEN, receiver);
   }

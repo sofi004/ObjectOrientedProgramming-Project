@@ -8,7 +8,6 @@ import xxl.core.Spreadsheet;
  * Command for searching content values.
  */
 class DoShowValues extends Command<Spreadsheet> {
-
   DoShowValues(Spreadsheet receiver) {
     super(Label.SEARCH_VALUES, receiver);
   }

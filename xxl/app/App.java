@@ -1,5 +1,5 @@
 /*
- * Grup 73 PO2L010
+ * Group 73 PO2L010
  * João Tomás de Almeida Santos Antunes Gomes Ist1106204
  * Sofia Dinis Pinto Piteira Ist1106194
  */

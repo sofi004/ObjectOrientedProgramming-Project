@@ -3,7 +3,6 @@ package xxl.core;
 import java.io.Serializable;
 
 public class Number extends Literal implements Serializable{
-
     private int _value;
     
     public Number(int val){
@@ -20,6 +19,7 @@ public class Number extends Literal implements Serializable{
         return String.valueOf(_value);
     }
 
+    @Override
     public boolean accept(Visitor visitor){
         return visitor.visit(this);
     }

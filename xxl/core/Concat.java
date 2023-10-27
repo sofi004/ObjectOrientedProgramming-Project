@@ -1,6 +1,6 @@
 package xxl.core;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Concat extends IntervalFunction {
 
@@ -11,7 +11,7 @@ public class Concat extends IntervalFunction {
 
     @Override
     protected Literal compute(){
-        ArrayList<Cell> listCells = _range.getListCells();
+        List<Cell> listCells = _range.getListCells();
         String n = "'";
         for(Cell c: listCells){
             try{
@@ -24,8 +24,8 @@ public class Concat extends IntervalFunction {
         return new Character(n);
     }
 
+    @Override
     public boolean accept(Visitor visitor){
         return visitor.visit(this);
     }
-
 }

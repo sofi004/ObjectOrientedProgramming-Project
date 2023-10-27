@@ -11,7 +11,6 @@ import xxl.core.Range;
  * Paste command.
  */
 class DoPaste extends Command<Spreadsheet> {
-
   DoPaste(Spreadsheet receiver) {
     super(Label.PASTE, receiver);
   }

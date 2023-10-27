@@ -1,7 +1,6 @@
 package xxl.core;
 
 public class Add extends BinaryFunction{
-
     public Add(Content arg0, Content arg1, String name){
         super(arg0, arg1, name);
         update();
@@ -17,6 +16,7 @@ public class Add extends BinaryFunction{
         }
     }
 
+    @Override
     public boolean accept(Visitor visitor){
         return visitor.visit(this);
     }

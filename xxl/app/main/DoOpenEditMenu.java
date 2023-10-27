@@ -8,7 +8,6 @@ import xxl.core.Calculator;
  * Open menu.
  */
 class DoOpenEditMenu extends Command<Calculator> {
-
   DoOpenEditMenu(Calculator receiver) {
     super(Label.MENU_CALC, receiver, r -> r.getSpreadsheet() != null);
   }

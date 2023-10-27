@@ -12,7 +12,6 @@ public class MatrixCellRepresentation implements CellsRepresentation, Serializab
         _columnsnum = columns;
         _listCells = new Cell[rows][columns];
         createListCell();
-
     }
 
     public void createListCell(){

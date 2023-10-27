@@ -1,9 +1,8 @@
 package xxl.core;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Average extends IntervalFunction {
-
     public Average(Range range, String name){
         super(range, name);
         update();
@@ -11,7 +10,7 @@ public class Average extends IntervalFunction {
 
     @Override
     protected Literal compute(){
-        ArrayList<Cell> listCells = _range.getListCells();
+        List<Cell> listCells = _range.getListCells();
         int n = 0;
         try{
             for(Cell c: listCells){
@@ -24,8 +23,8 @@ public class Average extends IntervalFunction {
         }
     }
 
+    @Override
     public boolean accept(Visitor visitor){
         return visitor.visit(this);
     }
-
 }

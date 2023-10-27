@@ -3,6 +3,7 @@ package xxl.core;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import xxl.app.exception.InvalidCellRangeException;
 
 /*
@@ -11,23 +12,19 @@ import xxl.app.exception.InvalidCellRangeException;
 public class Spreadsheet implements Serializable {
   @Serial
   private static final long serialVersionUID = 202308312359L;
-  
-  private int _height;
-  private int _width;
+
   private boolean _saved;
   private CutBuffer _cutBuffer;
   private CellsRepresentation _CellsList;
   private String _name;
   private boolean _named;
-  private ArrayList<User> _users;
+  private List<User> _users;
 
   public Spreadsheet(int row, int column){
-    _height = row;
-    _width = column;
     _saved = false;
     _named = false;
     _CellsList = new MatrixCellRepresentation(row, column);
-    ArrayList<Cell> bufferList = new ArrayList<Cell>();
+    List<Cell> bufferList = new ArrayList<Cell>();
     CutBuffer cutBuffer = new CutBuffer(bufferList);
     _cutBuffer = cutBuffer;
     _users = new ArrayList<User>();
@@ -80,7 +77,8 @@ public class Spreadsheet implements Serializable {
       firstRow = lastRow = Integer.parseInt(rangeCoordinates[0]);
       firstColumn = lastColumn = Integer.parseInt(rangeCoordinates[1]);
     }
-    if(firstRow > lastRow || firstColumn > lastColumn || lastRow > _height || lastColumn > _width
+    if(firstRow > lastRow || firstColumn > lastColumn ||
+    lastRow > _CellsList.getRowsnum() || lastColumn > _CellsList.getColumnsnum()
     || ((lastRow != firstRow) && (lastColumn != firstColumn))){
 
       throw new InvalidCellRangeException(rangeDescription);
@@ -89,8 +87,8 @@ public class Spreadsheet implements Serializable {
   }
 
   public void paste(Range selectedCells){
-    ArrayList<Cell> targetCells = selectedCells.getListCells();
-    ArrayList<Cell> cutBufferCells = _cutBuffer.getListCells();
+    List<Cell> targetCells = selectedCells.getListCells();
+    List<Cell> cutBufferCells = _cutBuffer.getListCells();
     int r = targetCells.get(0).getRow();
     int c = targetCells.get(0).getCollumn();
     int r_iterator = 0;
@@ -101,7 +99,7 @@ public class Spreadsheet implements Serializable {
     }
     if (targetCells.size() == 1){
       for(Cell e: cutBufferCells){
-        if(r <= _height && c <= _width){
+        if(r <= _CellsList.getRowsnum() && c <= _CellsList.getColumnsnum()){
           _CellsList.searchCell(r, c).insertContent(e.getContent());
           r += r_iterator;
           c += c_iterator;
@@ -110,7 +108,7 @@ public class Spreadsheet implements Serializable {
     }
     else if(targetCells.size() > 1){
       for(int i = 0; i < targetCells.size(); i++){
-        if(r <= _height && c <= _width){
+        if(r <= _CellsList.getRowsnum() && c <= _CellsList.getColumnsnum()){
           targetCells.get(i).insertContent(cutBufferCells.get(i).getContent());
           r += r_iterator;
           c += c_iterator;
@@ -119,8 +117,8 @@ public class Spreadsheet implements Serializable {
     }
   }
 
-  public void copy(ArrayList<Cell> copiedCells) throws InvalidCellRangeException{
-    ArrayList<Cell> listCells = new ArrayList<Cell>();
+  public void copy(List<Cell> copiedCells) throws InvalidCellRangeException{
+    List<Cell> listCells = new ArrayList<Cell>();
     int r = 1;
     int c = 1;
     int r_iterator = 0;
@@ -140,19 +138,10 @@ public class Spreadsheet implements Serializable {
     _cutBuffer = cutBuffer;
   }
 
-  public void delete(ArrayList<Cell> listCells){
+  public void delete(List<Cell> listCells){
     for(Cell c: listCells){
         Null n = new Null();
         c.insertContent(n);
     }
   }
 }
-
-  /**
-   * Insert specified content in specified address.
-   *
-   * @param row the row of the cell to change 
-   * param column the column of the cell to change
-   * @param contentSpecification the specification in a string format of the content to put
-   *        in the specified cell.
-   */
