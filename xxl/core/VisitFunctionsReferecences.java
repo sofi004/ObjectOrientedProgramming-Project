@@ -1,7 +1,6 @@
 package xxl.core;
 
-
-public class VisitFunctions implements Visitor{
+public class VisitFunctionsReferecences implements Visitor {
     public boolean visit(Content content){
         return false;
     }
@@ -63,6 +62,7 @@ public class VisitFunctions implements Visitor{
     }
 
     public boolean visit(Reference reference){
-        return false;
+        return true;
     }
 }
+
