@@ -1,8 +1,5 @@
 package xxl.core;
 
-import java.io.IOException;
-
-
 
 public abstract class BinaryFunction extends Function{
 

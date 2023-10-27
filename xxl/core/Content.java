@@ -1,7 +1,5 @@
 package xxl.core;
 
-import java.io.IOException;
-
 public abstract class Content implements Observer{
     
     public abstract String toString();
