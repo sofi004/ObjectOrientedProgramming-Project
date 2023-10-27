@@ -1,6 +1,5 @@
 package xxl.app.main;
 
-
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
@@ -12,7 +11,6 @@ import xxl.core.exception.UnrecognizedEntryException;
  * Open a new file.
  */
 class DoNew extends Command<Calculator> {
-
   DoNew(Calculator receiver) {
     super(Label.NEW, receiver); 
   }

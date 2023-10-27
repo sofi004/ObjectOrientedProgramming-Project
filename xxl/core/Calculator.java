@@ -14,11 +14,11 @@ import xxl.core.exception.InvalidFunctionException;
 import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
+import java.util.List;
 
 /**
 * Class representing a spreadsheet application.
 */
-
 public class Calculator{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
@@ -36,7 +36,6 @@ public class Calculator{
  *                                  the message "Dimensões inválidas para a folha", indicating that the provided
  *                                  dimensions are invalid for a spreadsheet.
  */
-
   public Calculator(){
     _users = new ArrayList<User>();
     _activeUser = new User("root");
@@ -52,7 +51,6 @@ public class Calculator{
     _spreadsheet = spreadsheet;
   }
 
-    
   /**
    * Return the current spreadsheet.
    *
@@ -61,7 +59,6 @@ public class Calculator{
   public final Spreadsheet getSpreadsheet(){
     return _spreadsheet;
   }
-
 
   /**
    * Saves the serialized application's state into the file associated to the current network.
@@ -74,11 +71,8 @@ public class Calculator{
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(_spreadsheet.getFileName()))){
       outstream.writeObject(_spreadsheet); 
       _spreadsheet.setSaved(true);
-
     }
   }
-
-  
 
   /**
    * Saves the serialized application's state into the specified file. The current network is
@@ -96,7 +90,6 @@ public class Calculator{
       outstream.writeObject(_spreadsheet);
     }
   }
-
   
   /**
    * @param filename name of the file containing the serialized application's state
@@ -106,16 +99,12 @@ public class Calculator{
    */
   public void load(String filename) throws UnavailableFileException, MissingFileAssociationException, IOException {
     try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))){
-      ArrayList<Cell> bufferList = new ArrayList<Cell>();
-      CutBuffer cutBuffer = new CutBuffer(bufferList);
       _spreadsheet = (Spreadsheet)in.readObject();
-      _spreadsheet.setCutBuffer(cutBuffer);
     } catch (ClassNotFoundException | IOException e){
       throw new UnavailableFileException(filename);
     }
   }
   
-
   /**
    * Read text input file and create domain entities.
    *

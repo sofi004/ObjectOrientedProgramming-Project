@@ -7,12 +7,10 @@ import xxl.core.Calculator;
 import java.io.*;
 import xxl.core.exception.MissingFileAssociationException;
 
-
 /**
  * Save to file under current name (if unnamed, query for name).
  */
 class DoSave extends Command<Calculator> {
-
   DoSave(Calculator receiver) {
     super(Label.SAVE, receiver, xxl -> xxl.getSpreadsheet() != null);
   }
@@ -31,6 +29,7 @@ class DoSave extends Command<Calculator> {
     }
     catch(IOException | MissingFileAssociationException e){ 
       _display.addLine(e.getMessage());
+      _display.display();
     }
   }
 }

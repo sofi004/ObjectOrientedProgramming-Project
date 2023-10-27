@@ -16,5 +16,6 @@ public interface Visitor {
     public boolean visit(Literal literal);
     public boolean visit(Function function);
     public boolean visit(BinaryFunction binaryFunction);
+    public boolean visit(IntervalFunction intervalFunction);
     public boolean visit(Reference reference);
 }

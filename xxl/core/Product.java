@@ -1,9 +1,8 @@
 package xxl.core;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Product extends IntervalFunction {
-
     public Product(Range range, String name){
         super(range, name);
         update();
@@ -11,7 +10,7 @@ public class Product extends IntervalFunction {
 
     @Override
     protected Literal compute(){
-        ArrayList<Cell> listCells = _range.getListCells();
+        List<Cell> listCells = _range.getListCells();
         int n = 1;
         try{
             for(Cell c: listCells){
@@ -23,6 +22,7 @@ public class Product extends IntervalFunction {
         }
     }
 
+    @Override
     public boolean accept(Visitor visitor){
         return visitor.visit(this);
     }

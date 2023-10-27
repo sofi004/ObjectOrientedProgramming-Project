@@ -18,13 +18,13 @@ public class Reference extends Content implements Serializable{
         update();
     }
 
+    public Cell getCell(){
+        return _cell;
+    }
+
     @Override
     public String toString(){
            return  _cell.value() + "=" + String.valueOf(_row)+";"+String.valueOf(_column);
-    }
-
-    public Cell getCell(){
-        return _cell;
     }
 
     @Override
@@ -32,14 +32,17 @@ public class Reference extends Content implements Serializable{
         return _value;   
     }
 
+    @Override
     public void update(){
         _value = _cell.value();
     }
 
+    @Override
     public void stopObserving(){
         _cell.getObservers().remove(this);
     }
 
+    @Override
     public boolean accept(Visitor visitor){
         return visitor.visit(this);
     }

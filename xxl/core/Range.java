@@ -2,6 +2,8 @@ package xxl.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Range implements Serializable{
 
@@ -10,7 +12,7 @@ public class Range implements Serializable{
     private int _endRow;
     private int _endColumn;
     private Spreadsheet _spreadsheet;
-    private ArrayList<Cell> _listCells;
+    private List<Cell> _listCells;
 
     public Range(int beginRow, int beginColumn, int endRow, int endColumn, Spreadsheet spreadsheet){
         _beginRow = beginRow;
@@ -22,7 +24,7 @@ public class Range implements Serializable{
         getCells();
     }
 
-    ArrayList<Cell> getCells(){
+    List<Cell> getCells(){
         for(int i = _beginRow; i <= _endRow; i++){
             for(int k = _beginColumn; k <= _endColumn; k++){
                 _listCells.add(_spreadsheet.getCells().searchCell(i, k));
@@ -31,7 +33,7 @@ public class Range implements Serializable{
         return _listCells;
     }
 
-    public ArrayList<Cell> getListCells(){
+    public List<Cell> getListCells(){
         return _listCells;
     }
 

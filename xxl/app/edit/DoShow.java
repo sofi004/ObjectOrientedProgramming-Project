@@ -1,17 +1,16 @@
 package xxl.app.edit;
 
-import java.util.ArrayList;
 import pt.tecnico.uilib.menus.Command;
 import xxl.core.Spreadsheet;
 import xxl.core.Range;
 import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.Cell;
+import java.util.List;
 
 /**
  * Class for searching functions.
  */
 class DoShow extends Command<Spreadsheet> {
-
   DoShow(Spreadsheet receiver) {
     super(Label.SHOW, receiver);
     addStringField("range", Message.address());
@@ -22,7 +21,7 @@ class DoShow extends Command<Spreadsheet> {
     String rangeDescription = stringField("range");
     try{
       Range range = _receiver.buildRange(rangeDescription);
-      ArrayList<Cell> listCells = range.getListCells();
+      List<Cell> listCells = range.getListCells();
       for(Cell c: listCells){
       _display.addLine(c.toString());
       }
@@ -32,5 +31,4 @@ class DoShow extends Command<Spreadsheet> {
     }
     _display.display();
   }
-  
 }

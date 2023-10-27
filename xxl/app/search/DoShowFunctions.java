@@ -9,7 +9,6 @@ import xxl.core.VisitFunctions;
  * Command for searching function names.
  */
 class DoShowFunctions extends Command<Spreadsheet> {
-
   DoShowFunctions(Spreadsheet receiver) {
     super(Label.SEARCH_FUNCTIONS, receiver);
   }
@@ -20,7 +19,6 @@ class DoShowFunctions extends Command<Spreadsheet> {
     int r = _receiver.getCells().getRowsnum();
     int c = _receiver.getCells().getColumnsnum();
     VisitFunctions visitor = new VisitFunctions();
-
     for(int i = 1; i <= r; i++){
       for(int k = 1; k <= c; k++){
           if(_receiver.getCells().searchCell(i, k).getContent().accept(visitor) &&
@@ -29,7 +27,6 @@ class DoShowFunctions extends Command<Spreadsheet> {
           }
         }
       }
-    
     _display.display();
   }
 }

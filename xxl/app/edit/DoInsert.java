@@ -1,6 +1,5 @@
 package xxl.app.edit;
 
-import java.util.ArrayList;
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
@@ -11,12 +10,12 @@ import xxl.core.Spreadsheet;
 import xxl.core.exception.InvalidFunctionException;
 import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.Parser;
+import java.util.List;
 
 /**
  * Class for inserting data.
  */
 class DoInsert extends Command<Spreadsheet> {
-
   DoInsert(Spreadsheet receiver) {
     super(Label.INSERT, receiver);
   }
@@ -28,7 +27,7 @@ class DoInsert extends Command<Spreadsheet> {
     String contentDescription = Form.requestString(Message.contents()); 
     try{
       Range range = _receiver.buildRange(rangeDescription);
-      ArrayList<Cell> listCells = range.getListCells();
+      List<Cell> listCells = range.getListCells();
       _receiver.setSaved(false);
       for(Cell c: listCells){
           c.insertContent(parse.parseContent(contentDescription));
