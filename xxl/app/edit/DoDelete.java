@@ -27,6 +27,7 @@ class DoDelete extends Command<Spreadsheet> {
     _receiver.setSaved(false);
     }catch(InvalidCellRangeException e){
       _display.addLine(e.getMessage());
+      _display.display();
     }
   }
 }

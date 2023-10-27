@@ -70,7 +70,6 @@ public class Calculator{
     try(ObjectOutputStream outstream = new ObjectOutputStream(new FileOutputStream(_spreadsheet.getFileName()))){
       outstream.writeObject(_spreadsheet); 
       _spreadsheet.setSaved(true);
-
     }
   }
 
@@ -99,9 +98,7 @@ public class Calculator{
    */
   public void load(String filename) throws UnavailableFileException, MissingFileAssociationException, IOException {
     try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))){
-      CutBuffer cutBuffer = new CutBuffer(new ArrayList<Cell>());
       _spreadsheet = (Spreadsheet)in.readObject();
-      _spreadsheet.setCutBuffer(cutBuffer);
     } catch (ClassNotFoundException | IOException e){
       throw new UnavailableFileException(filename);
     }

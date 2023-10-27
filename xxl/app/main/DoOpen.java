@@ -19,7 +19,7 @@ class DoOpen extends Command<Calculator> {
   
   @Override
   protected final void execute() throws CommandException, FileOpenFailedException {
-    if((_receiver.getSpreadsheet() != null) &&  (_receiver.getSpreadsheet().isSaved() == false)){
+    if((_receiver.getSpreadsheet() != null) &&  (!_receiver.getSpreadsheet().isSaved())){
       boolean booleanAnswer = Form.confirm(Message.saveBeforeExit());
       if(booleanAnswer){
         DoSave cmd = new DoSave(_receiver);
