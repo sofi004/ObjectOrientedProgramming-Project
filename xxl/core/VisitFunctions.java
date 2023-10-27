@@ -49,4 +49,16 @@ public class VisitFunctions implements Visitor{
     public boolean visit(Null nula){
         return false;
     }
+
+    public boolean visit(Literal literal){
+        return false;
+    }
+
+    public boolean visit(Function function){
+        return true;
+    }
+
+    public boolean visit(BinaryFunction binaryFunction){
+        return true;
+    }
 }

@@ -26,4 +26,8 @@ public abstract class Function extends Content implements Serializable, Observer
     public void update(){
         _value = compute();
     }
+
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
 }

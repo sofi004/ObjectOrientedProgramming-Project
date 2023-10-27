@@ -44,4 +44,8 @@ public abstract class BinaryFunction extends Function{
         catch(IOException e){      
         }
     }
+
+    public boolean accept(Visitor visitor){
+        return visitor.visit(this);
+    }
 }

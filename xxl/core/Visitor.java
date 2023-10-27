@@ -13,4 +13,7 @@ public interface Visitor {
     public boolean visit(Number number);
     public boolean visit(Character character);
     public boolean visit(Null nula);
+    public boolean visit(Literal literal);
+    public boolean visit(Function function);
+    public boolean visit(BinaryFunction binaryFunction);
 }
