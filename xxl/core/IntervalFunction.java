@@ -22,4 +22,10 @@ public abstract class IntervalFunction extends Function{
         }
     }
 
+    public void stopObserving(){
+        for(Cell c: _range.getListCells()){
+            c.getObservers().remove(this);
+        }
+    }
+
 }

@@ -3,6 +3,7 @@ package xxl.core;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -20,6 +21,8 @@ import xxl.core.exception.UnrecognizedEntryException;
 public class Calculator{
   /** The current spreadsheet. */
   private Spreadsheet _spreadsheet;
+  private ArrayList<User> _users;
+  private User _activeUser;
   
 /**
  * Creates a new spreadsheet with the specified dimensions and sets it as the current spreadsheet.
@@ -32,9 +35,16 @@ public class Calculator{
  *                                  the message "Dimensões inválidas para a folha", indicating that the provided
  *                                  dimensions are invalid for a spreadsheet.
  */
+
+  public Calculator(){
+    _users = new ArrayList<User>();
+    _activeUser = new User("root");
+    _spreadsheet = null;
+
+  }
  
   public void addSpreadsheet(int numberl, int numberc) throws UnrecognizedEntryException{
-    if (numberl <= 0 || numberc <= 0) {
+    if (numberl <= 0 || numberc <= 0) {_users = new ArrayList<User>();
       throw new UnrecognizedEntryException("Dimensões inválidas para a folha");
     }
     Spreadsheet spreadsheet = new Spreadsheet(numberl, numberc);
@@ -95,7 +105,10 @@ public class Calculator{
    */
   public void load(String filename) throws UnavailableFileException, MissingFileAssociationException, IOException {
     try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))){
+      ArrayList<Cell> bufferList = new ArrayList<Cell>();
+      CutBuffer cutBuffer = new CutBuffer(bufferList);
       _spreadsheet = (Spreadsheet)in.readObject();
+      _spreadsheet.setCutBuffer(cutBuffer);
     } catch (ClassNotFoundException | IOException e){
       throw new UnavailableFileException(filename);
     }

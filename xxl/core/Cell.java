@@ -1,5 +1,6 @@
 package xxl.core;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -29,7 +30,15 @@ public class Cell implements Serializable{
         return _column;
     }
 
+    public ArrayList<Observer> getObservers(){
+        return _observers;
+    }
+
     public void insertContent(Content content){
+        Visitor visitor = new VisitFunctionsReferecences();
+        if(_content.accept(visitor)){
+            _content.stopObserving();
+        }
         _content = content;
         recalcula();
     }

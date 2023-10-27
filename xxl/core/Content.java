@@ -2,15 +2,11 @@ package xxl.core;
 
 import java.io.IOException;
 
-public abstract class Content{
+public abstract class Content implements Observer{
     
     public abstract String toString();
 
     abstract Literal value();
-    
-    public  Cell getCell() throws IOException{
-        throw new IOException();    
-    }
 
     public int asInt(){
         return this.value().asInt();    
@@ -27,5 +23,16 @@ public abstract class Content{
     public String getName(){
         return "ADD";
     }
-    
+
+    public void update(){
+     
+    }
+
+    public void stopObserving(){
+
+    }
+
+    public Cell getCell(){
+        return null;
+    }
 }

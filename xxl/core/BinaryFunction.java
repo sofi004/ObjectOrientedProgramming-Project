@@ -33,19 +33,26 @@ public abstract class BinaryFunction extends Function{
     }
 
     public void addRecalculate(){
-        try{
+        Visitor visitor = new VisitFunctionsReferecences();
+        if(_arg0.accept(visitor)){
         _arg0.getCell().addObserver(this);
         }
-        catch(IOException e){      
-        }
-        try{
+        if(_arg0.accept(visitor)){
         _arg1.getCell().addObserver(this);
-        }
-        catch(IOException e){      
         }
     }
 
     public boolean accept(Visitor visitor){
         return visitor.visit(this);
+    }
+
+    public void stopObserving(){
+        Visitor visitor = new VisitFunctionsReferecences();
+        if(_arg0.accept(visitor)){
+            _arg0.getCell().getObservers().remove(this);
+        }
+        if(_arg1.accept(visitor)){
+            _arg1.getCell().getObservers().remove(this);
+        }
     }
 }

@@ -2,7 +2,7 @@ package xxl.core;
 
 import java.io.Serializable;
 
-public class Reference extends Content implements Serializable, Observer{
+public class Reference extends Content implements Serializable{
     private int _row;
     private int _column;
     private Spreadsheet _spreadsheet;
@@ -34,6 +34,10 @@ public class Reference extends Content implements Serializable, Observer{
 
     public void update(){
         _value = _cell.value();
+    }
+
+    public void stopObserving(){
+        _cell.getObservers().remove(this);
     }
 
     public boolean accept(Visitor visitor){

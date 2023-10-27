@@ -20,7 +20,7 @@ class DoSave extends Command<Calculator> {
   @Override
   protected final void execute() throws CommandException {
     try{
-      if (_receiver.getSpreadsheet().isNamed() == false){
+      if (!_receiver.getSpreadsheet().isNamed()){
         String nameSaveAs = Form.requestString(Message.newSaveAs());
         _receiver.getSpreadsheet().setName(nameSaveAs);
         _receiver.saveAs(nameSaveAs);
@@ -30,6 +30,7 @@ class DoSave extends Command<Calculator> {
       }
     }
     catch(IOException | MissingFileAssociationException e){ 
+      _display.addLine(e.getMessage());
     }
   }
 }
