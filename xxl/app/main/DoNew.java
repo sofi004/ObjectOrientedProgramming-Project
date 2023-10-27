@@ -5,6 +5,7 @@ import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import xxl.app.exception.FileOpenFailedException;
+import xxl.app.exception.InvalidSheetEntryException;
 import xxl.core.Calculator;
 import xxl.core.exception.UnrecognizedEntryException;
 
@@ -18,7 +19,7 @@ class DoNew extends Command<Calculator> {
   }
   
   @Override
-  protected final void execute() throws FileOpenFailedException, CommandException{
+  protected final void execute() throws FileOpenFailedException, CommandException, InvalidSheetEntryException{
     if(_receiver.getSpreadsheet() != null &&  !_receiver.getSpreadsheet().isSaved()){
       boolean booleanAnswer = Form.confirm(Message.saveBeforeExit());
       if(booleanAnswer){
@@ -34,7 +35,8 @@ class DoNew extends Command<Calculator> {
     Integer numberc = Form.requestInteger(Message.columns());
     try{
       _receiver.addSpreadsheet(numberl, numberc); 
-    } catch(UnrecognizedEntryException e){}
-    
+    } catch(UnrecognizedEntryException e){
+      e.printStackTrace();
+    }
   }
 }
