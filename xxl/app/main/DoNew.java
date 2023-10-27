@@ -19,7 +19,7 @@ class DoNew extends Command<Calculator> {
   }
   
   @Override
-  protected final void execute() throws FileOpenFailedException, CommandException, InvalidSheetEntryException{
+  protected final void execute() throws FileOpenFailedException, CommandException{
     if(_receiver.getSpreadsheet() != null &&  !_receiver.getSpreadsheet().isSaved()){
       boolean booleanAnswer = Form.confirm(Message.saveBeforeExit());
       if(booleanAnswer){
