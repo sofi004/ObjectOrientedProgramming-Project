@@ -8,13 +8,14 @@ public abstract class BinaryFunction extends Function{
         super(name);
         _arg0 = arg0;
         _arg1 = arg1;
+        addRecalculate();
     }
 
     @Override
     public String toString(){
         String[] arg0 = _arg0.toString().split("=");
         String[] arg1 = _arg1.toString().split("=");
-        String func = compute().toString() + "=" + super.getName() + "(" + arg0[arg0.length - 1] + "," + arg1[arg1.length-1] + ")"; 
+        String func = value().toString() + "=" + super.getName() + "(" + arg0[arg0.length - 1] + "," + arg1[arg1.length-1] + ")"; 
         return func;
     }
 
@@ -31,7 +32,7 @@ public abstract class BinaryFunction extends Function{
         if(_arg0.accept(visitor)){
         _arg0.getCell().addObserver(this);
         }
-        if(_arg0.accept(visitor)){
+        if(_arg1.accept(visitor)){
         _arg1.getCell().addObserver(this);
         }
     }

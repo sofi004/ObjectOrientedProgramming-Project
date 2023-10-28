@@ -17,7 +17,7 @@ public abstract class Content implements Observer{
     }
 
     public String getName(){
-        return "ADD";
+        return null;
     }
 
     public void update(){

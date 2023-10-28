@@ -11,7 +11,7 @@ public abstract class IntervalFunction extends Function{
 
     @Override
     public String toString(){
-        String func = compute().toString() + "=" + super.getName() + "(" + _range.getBeginRow() + ";" + 
+        String func = value().toString() + "=" + super.getName() + "(" + _range.getBeginRow() + ";" + 
         _range.getBeginColumn() + ":" + _range.getEndRow() + ";" + _range.getEndColumn() + ")"; 
         return func;
     }

@@ -19,7 +19,7 @@ class DoShowValues extends Command<Spreadsheet> {
     int c = _receiver.getCells().getColumnsnum();
     for(int i = 1; i <= r; i++){
       for(int k = 1; k <= c; k++){
-        if(String.valueOf(_receiver.getCells().searchCell(i, k).value()).equals(literalDescription)){
+        if(_receiver.getCells().searchCell(i, k).value().toString().equals(literalDescription)){
           _display.addLine(_receiver.getCells().searchCell(i, k).toString());
         }
       }
