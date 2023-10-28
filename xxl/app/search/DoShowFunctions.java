@@ -1,6 +1,7 @@
 package xxl.app.search;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import pt.tecnico.uilib.forms.Form;
@@ -26,16 +27,22 @@ class DoShowFunctions extends Command<Spreadsheet> {
     VisitFunctions visitor = new VisitFunctions();
     for(int i = 1; i <= r; i++){
       for(int k = 1; k <= c; k++){
-          if(_receiver.getCells().searchCell(i, k).getContent().accept(visitor) &&
-          _receiver.getCells().searchCell(i, k).getContent().getName().contains(functionDescription)){
-            funcList.add(_receiver.getCells().searchCell(i, k));
-          }
+        if(_receiver.getCells().searchCell(i, k).getContent().accept(visitor) &&
+        _receiver.getCells().searchCell(i, k).getContent().getName().contains(functionDescription)){
+          funcList.add(_receiver.getCells().searchCell(i, k));
         }
       }
-      funcList.sort(Comparator.naturalOrder());
-      for(Cell z: funcList){
-        _display.addLine(z.toString());
-      }
+    }
+    Collections.sort(funcList, new AlphabeticalComparator());
+    for(Cell cell: funcList){
+      _display.addLine(cell.toString());
+    }
     _display.display();
   }
+}
+
+class AlphabeticalComparator implements Comparator<Cell> {
+    public int compare(Cell c1, Cell c2) {
+        return c1.getContent().getName().compareTo(c2.getContent().getName());
+    }
 }
