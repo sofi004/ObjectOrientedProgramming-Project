@@ -8,14 +8,14 @@ package xxl.app;
 
 import pt.tecnico.uilib.Dialog;
 import xxl.app.exception.InvalidCellRangeException;
+import xxl.app.exception.UnknownFunctionException;
 import xxl.core.exception.ImportFileException;
-import xxl.core.exception.InvalidFunctionException;
 
 /**
  * Class that represents the spreadsheet's textual interface.
  */
 public class App {
-  public static void main(String[] args) throws InvalidFunctionException, InvalidCellRangeException{
+  public static void main(String[] args) throws UnknownFunctionException, InvalidCellRangeException{
     try (var ui = Dialog.UI) {
       var receiver = new xxl.core.Calculator();
       String datafile = System.getProperty("import");

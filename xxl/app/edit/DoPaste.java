@@ -19,11 +19,10 @@ class DoPaste extends Command<Spreadsheet> {
   protected final void execute() throws CommandException {
     String rangeDescription = Form.requestString(Message.address());
     Range selectedCells = _receiver.buildRange(rangeDescription);
-    if(selectedCells.getListCells().size() != _receiver.getCutBuffer().getListCells().size() 
-      && selectedCells.getListCells().size() != 1){
-      throw new InvalidCellRangeException(rangeDescription);
+    if(selectedCells.getListCells().size() == _receiver.getCutBuffer().getListCells().size() 
+    || selectedCells.getListCells().size() == 1){
+      _receiver.paste(selectedCells);
+      _receiver.setSaved(false);
     }
-    _receiver.paste(selectedCells);
-    _receiver.setSaved(false);
   }
 }

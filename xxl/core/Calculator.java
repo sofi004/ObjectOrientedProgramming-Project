@@ -9,8 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import xxl.app.exception.InvalidCellRangeException;
+import xxl.app.exception.UnknownFunctionException;
 import xxl.core.exception.ImportFileException;
-import xxl.core.exception.InvalidFunctionException;
 import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
@@ -111,11 +111,11 @@ public class Calculator{
    * @param filename name of the text input file
    * @throws ImportFileException
    */
-  public void importFile(String filename) throws ImportFileException, InvalidFunctionException, InvalidCellRangeException {
+  public void importFile(String filename) throws ImportFileException, UnknownFunctionException, InvalidCellRangeException {
     try {
       Parser parse = new Parser(_spreadsheet);
       _spreadsheet = parse.parseFile(filename);
-    } catch (IOException | UnrecognizedEntryException | InvalidFunctionException e) {
+    } catch (IOException | UnrecognizedEntryException | UnknownFunctionException e) {
       throw new ImportFileException(filename, e);
     }
   } 
