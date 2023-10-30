@@ -12,3 +12,4 @@ chmod +x runtests.sh
 
 java -cp po-uilib.jar:. -Dimport=ex.in xxl.app.App
 
+jar cvf proj.jar xxl
